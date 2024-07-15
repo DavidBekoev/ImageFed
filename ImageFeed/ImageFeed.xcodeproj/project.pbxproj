@@ -17,6 +17,7 @@
 		EAA980B62C372BA40095CE78 /* ImageFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA980B52C372BA40095CE78 /* ImageFeedTests.swift */; };
 		EAA980C02C372BA40095CE78 /* ImageFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA980BF2C372BA40095CE78 /* ImageFeedUITests.swift */; };
 		EAA980C22C372BA40095CE78 /* ImageFeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA980C12C372BA40095CE78 /* ImageFeedUITestsLaunchTests.swift */; };
+		EAEAB9342C4324770014F1B8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		EAA980BB2C372BA40095CE78 /* ImageFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA980BF2C372BA40095CE78 /* ImageFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedUITests.swift; sourceTree = "<group>"; };
 		EAA980C12C372BA40095CE78 /* ImageFeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +106,9 @@
 				EAA9809E2C372BA30095CE78 /* AppDelegate.swift */,
 				EAA980A02C372BA30095CE78 /* SceneDelegate.swift */,
 				EAA980A22C372BA30095CE78 /* ImagesListViewController.swift */,
-				EAA980A42C372BA30095CE78 /* Main.storyboard */,
 				EA993FBE2C3F215400FF4BAC /* ImagesListCell.swift */,
+				EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */,
+				EAA980A42C372BA30095CE78 /* Main.storyboard */,
 				EAA980A72C372BA40095CE78 /* Assets.xcassets */,
 				EAA980A92C372BA40095CE78 /* LaunchScreen.storyboard */,
 				EAA980AC2C372BA40095CE78 /* Info.plist */,
@@ -263,6 +266,7 @@
 			files = (
 				EAA980A32C372BA30095CE78 /* ImagesListViewController.swift in Sources */,
 				EA993FBF2C3F215400FF4BAC /* ImagesListCell.swift in Sources */,
+				EAEAB9342C4324770014F1B8 /* ProfileViewController.swift in Sources */,
 				EAA9809F2C372BA30095CE78 /* AppDelegate.swift in Sources */,
 				EAA980A12C372BA30095CE78 /* SceneDelegate.swift in Sources */,
 			);
