@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K82-RU-kiI">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,6 +10,28 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="GgZ-65-1jG">
+            <objects>
+                <tabBarController id="K82-RU-kiI" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DSk-0f-eA7">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="Color1"/>
+                        </tabBarAppearance>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="gua-q1-QsB"/>
+                        <segue destination="s1Q-pC-rhY" kind="relationship" relationship="viewControllers" id="YAg-ds-VbD"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FlR-vw-QIS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1561" y="456"/>
+        </scene>
         <!--Profile View Controller-->
         <scene sceneID="wFa-GW-9a2">
             <objects>
@@ -18,7 +40,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="TPU-8m-BkI" userLabel="Avatar Image View">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="TPU-8m-BkI" userLabel="Avatar Image View">
                                 <rect key="frame" x="16" y="91" width="70" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TPU-8m-BkI" secondAttribute="height" multiplier="1:1" id="AQv-62-A5o"/>
@@ -31,6 +53,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Екатерина Новикова" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QK6-3i-zmb" userLabel="Name Label">
+                                <rect key="frame" x="16" y="169" width="361" height="27.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZc-XI-GaM" userLabel="Logout Button">
                                 <rect key="frame" x="333" y="104" width="44" height="44"/>
                                 <color key="backgroundColor" name="Color"/>
@@ -38,28 +66,22 @@
                                     <constraint firstAttribute="height" constant="44" id="9xc-16-bSD"/>
                                     <constraint firstAttribute="width" constant="44" id="uZa-iK-ya9"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="Logout"/>
                                 <connections>
                                     <action selector="didTapLogoutButton" destination="s1Q-pC-rhY" eventType="touchUpInside" id="4c8-u5-LXb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@ekaterina_nov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jg4-Qz-24x" userLabel="Login Name Label">
-                                <rect key="frame" x="16" y="202" width="361" height="15.666666666666671"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ekaterina_nov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jg4-Qz-24x" userLabel="Login Name Label">
+                                <rect key="frame" x="16" y="204.66666666666666" width="361" height="15.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hello, World!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11H-Px-dk7" userLabel="Description Label">
-                                <rect key="frame" x="16" y="226" width="361" height="15.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, World!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11H-Px-dk7" userLabel="Description Label">
+                                <rect key="frame" x="16" y="228.33333333333334" width="361" height="15.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Екатерина Новикова" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QK6-3i-zmb" userLabel="Name Label">
-                                <rect key="frame" x="16" y="166" width="361" height="27.666666666666671"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -67,21 +89,22 @@
                         <viewLayoutGuide key="safeArea" id="FxY-Dl-lDi"/>
                         <color key="backgroundColor" name="Color"/>
                         <constraints>
+                            <constraint firstItem="Jg4-Qz-24x" firstAttribute="top" secondItem="QK6-3i-zmb" secondAttribute="bottom" constant="8" id="4dR-0K-m5q"/>
                             <constraint firstItem="lZc-XI-GaM" firstAttribute="centerY" secondItem="TPU-8m-BkI" secondAttribute="centerY" id="5so-kt-aa1"/>
-                            <constraint firstItem="Jg4-Qz-24x" firstAttribute="top" secondItem="QK6-3i-zmb" secondAttribute="top" constant="8" id="6Bc-Rd-9fq" userLabel="Login Name Label.top = Name Label.bottom"/>
                             <constraint firstItem="11H-Px-dk7" firstAttribute="trailing" secondItem="QK6-3i-zmb" secondAttribute="trailing" id="8VB-kP-7M7"/>
                             <constraint firstItem="Jg4-Qz-24x" firstAttribute="trailing" secondItem="QK6-3i-zmb" secondAttribute="trailing" id="Ak7-S9-v6t"/>
                             <constraint firstItem="FxY-Dl-lDi" firstAttribute="trailing" secondItem="lZc-XI-GaM" secondAttribute="trailing" constant="16" id="IQI-zG-Kc4"/>
-                            <constraint firstItem="11H-Px-dk7" firstAttribute="top" secondItem="Jg4-Qz-24x" secondAttribute="top" constant="8" id="arh-BE-XaL" userLabel="Description Label.top = Login Name Label.bottom"/>
                             <constraint firstItem="11H-Px-dk7" firstAttribute="leading" secondItem="QK6-3i-zmb" secondAttribute="leading" id="bJI-qf-8yU"/>
                             <constraint firstItem="TPU-8m-BkI" firstAttribute="top" secondItem="FxY-Dl-lDi" secondAttribute="top" constant="32" id="cJD-oU-wEP"/>
                             <constraint firstItem="Jg4-Qz-24x" firstAttribute="leading" secondItem="QK6-3i-zmb" secondAttribute="leading" id="dFP-z9-209"/>
-                            <constraint firstItem="QK6-3i-zmb" firstAttribute="top" secondItem="TPU-8m-BkI" secondAttribute="top" constant="8" id="h0R-9r-oow" userLabel="Name Label.top = Avatar Image View.bottom"/>
+                            <constraint firstItem="11H-Px-dk7" firstAttribute="top" secondItem="Jg4-Qz-24x" secondAttribute="bottom" constant="8" id="h3z-DD-XVM"/>
+                            <constraint firstItem="QK6-3i-zmb" firstAttribute="top" secondItem="TPU-8m-BkI" secondAttribute="bottom" constant="8" id="i7C-Fm-sr3"/>
                             <constraint firstItem="FxY-Dl-lDi" firstAttribute="trailing" secondItem="QK6-3i-zmb" secondAttribute="trailing" constant="16" id="tWZ-K6-A3D"/>
                             <constraint firstItem="QK6-3i-zmb" firstAttribute="leading" secondItem="TPU-8m-BkI" secondAttribute="leading" id="uhu-e9-JDo"/>
                             <constraint firstItem="TPU-8m-BkI" firstAttribute="leading" secondItem="FxY-Dl-lDi" secondAttribute="leading" constant="16" id="xbi-oi-M7T"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="tab_profile_active" id="IS4-mp-Qbp"/>
                     <connections>
                         <outlet property="avatarImageView" destination="TPU-8m-BkI" id="6wZ-1U-njs"/>
                         <outlet property="descriptionLabel" destination="11H-Px-dk7" id="asD-Yu-9XP"/>
@@ -92,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPX-6c-IAk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1947.3282442748091" y="24.647887323943664"/>
+            <point key="canvasLocation" x="81.679389312977094" y="831.69014084507046"/>
         </scene>
         <!--Images List View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -175,6 +198,7 @@
                             <constraint firstItem="ve3-8B-qKE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zJn-qF-M3A"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="tfM-mC-I3h"/>
                     <connections>
                         <outlet property="tableView" destination="ve3-8B-qKE" id="zoB-jr-z8R"/>
                     </connections>
@@ -186,10 +210,15 @@
     </scenes>
     <resources>
         <image name="0" width="1600" height="1059"/>
-        <image name="Image" width="35" height="35"/>
+        <image name="Avatar" width="35" height="35"/>
         <image name="Logout" width="6.6666665077209473" height="7.3333334922790527"/>
         <image name="like_button_off" width="42" height="42"/>
+        <image name="tab_editorial_active" width="25.333333969116211" height="16.333333969116211"/>
+        <image name="tab_profile_active" width="25.333333969116211" height="16.333333969116211"/>
         <namedColor name="Color">
+            <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Color1">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
