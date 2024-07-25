@@ -24,7 +24,7 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
-        let profileImage = UIImage(systemName: "person.crop.circle.fill")
+        _ = UIImage(systemName: "person.crop.circle.fill")
         let imageView = UIImageView(image: UIImage(named: "Avatar"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
