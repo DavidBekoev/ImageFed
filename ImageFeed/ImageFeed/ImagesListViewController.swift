@@ -20,34 +20,37 @@ class ImagesListViewController: UIViewController {
         return formatter
     }() 
      
- 
+  
+    
+    
   
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+       
         tableView.delegate = self
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
       
         tableView.rowHeight = 200
         tableView.backgroundColor = .black
+        
+       
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-          if segue.identifier == showSingleImageSegueIdentifier { // 1
+          if segue.identifier == showSingleImageSegueIdentifier {
               guard
-                  let viewController = segue.destination as? SingleImageViewController, // 2
-                  let indexPath = sender as? IndexPath // 3
+                  let viewController = segue.destination as? SingleImageViewController,
+                  let indexPath = sender as? IndexPath
               else {
-                  assertionFailure("Invalid segue destination") // 4
+                  assertionFailure("Invalid segue destination")
                   return
               }
 
-              let image = UIImage(named: photosName[indexPath.row])//5
-              _ = viewController.view //
-              viewController.imageView.image = image // 6
+              let image = UIImage(named: photosName[indexPath.row])
+              viewController.image = image
           } else {
-              super.prepare(for: segue, sender: sender) // 7
+              super.prepare(for: segue, sender: sender)
           }
       }
   }
@@ -106,4 +109,5 @@ extension ImagesListViewController: UITableViewDelegate {
         return cellHeight
     }
 }
+
 

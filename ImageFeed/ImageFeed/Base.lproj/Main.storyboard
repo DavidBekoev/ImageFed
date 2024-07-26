@@ -106,7 +106,7 @@
                                                 <constraint firstItem="MeI-sh-8ba" firstAttribute="leading" secondItem="9P7-Ln-GHQ" secondAttribute="leading" constant="8" id="osf-7f-UZS" userLabel="Data Label.leading = 0.leading + 8"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="Color1"/>
                                         <connections>
                                             <outlet property="cellImage" destination="9P7-Ln-GHQ" id="qiN-HW-aoQ"/>
                                             <outlet property="dateLabel" destination="MeI-sh-8ba" id="rR4-pH-Opk"/>
@@ -175,7 +175,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapBackButton" destination="vz9-bV-kJI" eventType="touchUpInside" id="GWC-6O-9gi"/>
+                                    <action selector="didTapBackButton" destination="vz9-bV-kJI" eventType="touchUpInside" id="3a7-bI-rcM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eop-3J-cKt" userLabel="Sharebutton">

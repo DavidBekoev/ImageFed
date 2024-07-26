@@ -7,12 +7,12 @@
 
 import UIKit
 final class SingleImageViewController: UIViewController {
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var scrollView: UIScrollView!
   
     var image: UIImage? {
         didSet {
-           guard isViewLoaded, let image else { return }
+            guard isViewLoaded, let image else { return }
             
             imageView.image = image
             imageView.frame.size = image.size
@@ -30,7 +30,8 @@ final class SingleImageViewController: UIViewController {
         imageView.frame.size = image.size
         rescaleAndCenterImageInScrollView(image: image)
     }
-
+    
+    
     @IBAction private func didTapBackButton() {
         dismiss(animated: true, completion: nil)
     }
