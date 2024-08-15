@@ -7,12 +7,25 @@
 
 import Foundation
 
-enum NetworkError: Error {
-    case httpStatusCode(Int)
+
+enum NetworkError: Error, LocalizedError {
+    case httpStatusCodeError(Int)
     case urlRequestError(Error)
     case urlSessionError
+    
+    var errorDescription: String? {
+        switch self {
+        case .httpStatusCodeError(let code):
+            return "HTTPS Status Code Error: \(code)"
+        case .urlRequestError(let error):
+            return "URLRequest Error: \(error.localizedDescription)"
+        case .urlSessionError:
+            return "URLSession Error"
+        }
+    }
 }
 
+    
 extension URLSession {
     func data(
         for request: URLRequest,
@@ -29,7 +42,7 @@ extension URLSession {
                 if 200 ..< 300 ~= statusCode {
                     fulfillCompletionOnTheMainThread(.success(data))
                 } else {
-                    fulfillCompletionOnTheMainThread(.failure(NetworkError.httpStatusCode(statusCode))) 
+                    fulfillCompletionOnTheMainThread(.failure(NetworkError.httpStatusCodeError(statusCode)))
                 }
             } else if let error = error {
                 fulfillCompletionOnTheMainThread(.failure(NetworkError.urlRequestError(error)))
@@ -40,4 +53,5 @@ extension URLSession {
         
         return task
     }
+    
 }

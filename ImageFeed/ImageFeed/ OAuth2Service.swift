@@ -8,48 +8,59 @@
 import Foundation
 
 final class OAuth2Service {
-//    func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
- //       completion(.success(""))
- //   }
+
+    static let shared = OAuth2Service()
+    private init() {}
     
-    func fetchOAuthToken(code: String, completion: @escaping(_ result: Result<String, Error>) -> Void) {
-         let request = makeOAuthTokenRequest (code: code) 
-            let dataTask = URLSession.shared.data(for: request) { result in
+    private func makeOAuthTokenRequest(code: String) -> URLRequest? {
+            var urlComponents = URLComponents(string: "https://unsplash.com/oauth/token")
+            urlComponents?.queryItems = [
+                URLQueryItem(name: "client_id", value: Constants.accessKey),
+                URLQueryItem(name: "client_secret", value: Constants.secretKey),
+                URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
+                URLQueryItem(name: "code", value: code),
+                URLQueryItem(name: "grant_type", value: "authorization_code")
+            ]
+            guard let url = urlComponents?.url else {
+                return nil
+            }
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            return request
+        }
+
+        func fetchOAuthToken(
+            withCode code: String,
+            completion: @escaping (Result<String, Error>) -> Void
+        ) {
+            let request = makeOAuthTokenRequest(code: code)
+            guard let request else {
+                print("Invalid fetch token request")
+                return
+            }
+            let task = URLSession.shared.data(for: request) { result in
                 switch result {
                 case .success(let data):
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
                     do {
-                        let responseBody = try decoder.decode(OAuthTokenResponseBody.self, from: data)
-                        completion(.success(responseBody.accessToken))
+                        let decoder = JSONDecoder()
+                        let response = try decoder.decode(OAuthTokenResponseBody.self, from: data)
+                        let token = response.token
+                        completion(.success(token))
                     } catch {
-                        completion(.failure(DecoderError.decodingError(error)))
+                        print("OAuth token decode error: \(error.localizedDescription)")
+                        completion(.failure(error))
                     }
                 case .failure(let error):
                     completion(.failure(error))
                 }
             }
-            dataTask.resume()
+            task.resume()
         }
-
-
-    func makeOAuthTokenRequest(code: String) -> URLRequest {
-         let baseURL = URL(string: "https://unsplash.com")!
-         let url = URL(
-             string: "/oauth/token"
-             + "?client_id=\(accessKey)"
-             + "&&client_secret=\(secretKey)"
-             + "&&redirect_uri=\(redirectURI)"
-             + "&&code=\(code)"
-             + "&&grant_type=authorization_code",
-             relativeTo: baseURL
-         )!
-      
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        return request
     }
-}
+
+   
+    
+
 
 enum DecoderError: Error, LocalizedError {
     case decodingError(Error)
