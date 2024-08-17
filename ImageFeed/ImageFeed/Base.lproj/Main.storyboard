@@ -208,6 +208,20 @@
                                         <rect key="frame" x="0.0" y="56" width="425" height="717"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4Z-gZ-bIK">
+                                        <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="bhv-YH-tB9"/>
+                                            <constraint firstAttribute="width" constant="48" id="hnm-g0-Esh"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="back_button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapBackButton" destination="vz9-bV-kJI" eventType="touchUpInside" id="9f1-0P-Mc8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="BKK-Db-reC"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Jwj-Mf-sM4"/>
@@ -215,22 +229,6 @@
                                     <outlet property="delegate" destination="vz9-bV-kJI" id="Aju-qs-j4T"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4Z-gZ-bIK">
-                                <rect key="frame" x="8" y="8" width="24" height="48"/>
-                                <color key="backgroundColor" name="Color1"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="bhv-YH-tB9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="Image">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapBackButton" destination="vz9-bV-kJI" eventType="touchUpInside" id="3a7-bI-rcM"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eop-3J-cKt" userLabel="Sharebutton">
                                 <rect key="frame" x="171.66666666666666" y="785" width="50" height="50"/>
                                 <constraints>
@@ -249,11 +247,11 @@
                         <constraints>
                             <constraint firstItem="2Tu-rX-j4F" firstAttribute="bottom" secondItem="eop-3J-cKt" secondAttribute="bottom" constant="17" id="9gg-6y-x27"/>
                             <constraint firstItem="2Tu-rX-j4F" firstAttribute="top" secondItem="3A1-i7-Dbm" secondAttribute="top" id="A1Q-1A-Pcw"/>
-                            <constraint firstItem="Q4Z-gZ-bIK" firstAttribute="top" secondItem="2Tu-rX-j4F" secondAttribute="top" constant="8" id="MGb-S4-QBj"/>
                             <constraint firstItem="3A1-i7-Dbm" firstAttribute="trailing" secondItem="2Tu-rX-j4F" secondAttribute="trailing" id="ScB-jy-QBg"/>
                             <constraint firstItem="eop-3J-cKt" firstAttribute="centerX" secondItem="2Tu-rX-j4F" secondAttribute="centerX" id="VPq-27-dPI"/>
+                            <constraint firstItem="Q4Z-gZ-bIK" firstAttribute="leading" secondItem="2Tu-rX-j4F" secondAttribute="leading" constant="8" id="Wez-5w-9ag"/>
+                            <constraint firstItem="Q4Z-gZ-bIK" firstAttribute="top" secondItem="2Tu-rX-j4F" secondAttribute="top" constant="8" id="bHE-nq-EdZ"/>
                             <constraint firstItem="3A1-i7-Dbm" firstAttribute="bottom" secondItem="2Tu-rX-j4F" secondAttribute="bottom" id="eE7-ie-Cye"/>
-                            <constraint firstItem="Q4Z-gZ-bIK" firstAttribute="leading" secondItem="2Tu-rX-j4F" secondAttribute="leading" constant="8" id="krk-As-i5A"/>
                             <constraint firstItem="2Tu-rX-j4F" firstAttribute="leading" secondItem="3A1-i7-Dbm" secondAttribute="leading" id="uf4-2x-Hmz"/>
                         </constraints>
                     </view>
@@ -373,8 +371,8 @@
     <resources>
         <image name="0" width="1600" height="1059"/>
         <image name="Button" width="50" height="50"/>
-        <image name="Image" width="24" height="24"/>
         <image name="auth_screen_logo" width="60" height="60"/>
+        <image name="back_button" width="24" height="24"/>
         <image name="like_button_off" width="42" height="42"/>
         <image name="nav_back_botton" width="24" height="24"/>
         <image name="splash_screen_logo" width="75" height="78"/>
