@@ -100,6 +100,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA7C03802C714F11000370EB /* ServiceAccessLayer */ = {
+			isa = PBXGroup;
+			children = (
+				EA7C03812C714F42000370EB /* Oauth2 */,
+			);
+			path = ServiceAccessLayer;
+			sourceTree = "<group>";
+		};
+		EA7C03812C714F42000370EB /* Oauth2 */ = {
+			isa = PBXGroup;
+			children = (
+				EA2FD9F72C63E461000A0F62 /*  OAuth2Service.swift */,
+				EA2FD9FF2C64E36B000A0F62 /* OAuth2TokenStorage .swift */,
+				EA2FDA012C655CEA000A0F62 /* OAuthTokenResponseBody.swift */,
+			);
+			path = Oauth2;
+			sourceTree = "<group>";
+		};
+		EA7C03822C714FA8000370EB /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EA2FDA052C69467C000A0F62 /* WebViewViewControllerDelegate.swift */,
+				EA9D94142C56DB0F00CC1C2D /* WebViewViewController.swift */,
+				EA9D94122C56D52C00CC1C2D /* AuthViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		EA7C03832C714FC1000370EB /* SplashViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EA2FD9FD2C6428D8000A0F62 /* SplashViewController.swift */,
+			);
+			path = SplashViewController;
+			sourceTree = "<group>";
+		};
+		EA7C03842C714FEA000370EB /* ImageList */ = {
+			isa = PBXGroup;
+			children = (
+				EAA980A22C372BA30095CE78 /* ImagesListViewController.swift */,
+				EA993FBE2C3F215400FF4BAC /* ImagesListCell.swift */,
+			);
+			path = ImageList;
+			sourceTree = "<group>";
+		};
+		EA7C03852C715014000370EB /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */,
+			);
+			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
+		EA7C03872C715036000370EB /* SingleImageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EA1E21F72C484845007C1B81 /* SingleImageViewController.swift */,
+			);
+			path = SingleImageViewController;
+			sourceTree = "<group>";
+		};
 		EAA980922C372BA20095CE78 = {
 			isa = PBXGroup;
 			children = (
@@ -127,17 +188,12 @@
 				EAA980A02C372BA30095CE78 /* SceneDelegate.swift */,
 				EA2FD9F92C63E638000A0F62 /* URLSession+data.swift */,
 				EA9D94102C55405500CC1C2D /* Constans.swift */,
-				EA2FD9F72C63E461000A0F62 /*  OAuth2Service.swift */,
-				EA2FD9FF2C64E36B000A0F62 /* OAuth2TokenStorage .swift */,
-				EA2FDA012C655CEA000A0F62 /* OAuthTokenResponseBody.swift */,
-				EA2FD9FD2C6428D8000A0F62 /* SplashViewController.swift */,
-				EA9D94122C56D52C00CC1C2D /* AuthViewController.swift */,
-				EA9D94142C56DB0F00CC1C2D /* WebViewViewController.swift */,
-				EA2FDA052C69467C000A0F62 /* WebViewViewControllerDelegate.swift */,
-				EAA980A22C372BA30095CE78 /* ImagesListViewController.swift */,
-				EA993FBE2C3F215400FF4BAC /* ImagesListCell.swift */,
-				EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */,
-				EA1E21F72C484845007C1B81 /* SingleImageViewController.swift */,
+				EA7C03832C714FC1000370EB /* SplashViewController */,
+				EA7C03822C714FA8000370EB /* Auth */,
+				EA7C03842C714FEA000370EB /* ImageList */,
+				EA7C03852C715014000370EB /* ProfileViewController */,
+				EA7C03802C714F11000370EB /* ServiceAccessLayer */,
+				EA7C03872C715036000370EB /* SingleImageViewController */,
 				EAA980A42C372BA30095CE78 /* Main.storyboard */,
 				EAA980A72C372BA40095CE78 /* Assets.xcassets */,
 				EAA980A92C372BA40095CE78 /* LaunchScreen.storyboard */,
