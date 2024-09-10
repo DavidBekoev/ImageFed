@@ -44,6 +44,7 @@ final class WebViewViewController: UIViewController {
        override func viewWillDisappear(_ animated: Bool) {
            super.viewWillDisappear(animated)
            webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
+           
        }
 
        override func observeValue(
@@ -84,12 +85,15 @@ final class WebViewViewController: UIViewController {
    // MARK: - WKNavigationDelegate
 extension WebViewViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        UIBlockingProgressHUD.show()
         if let code = code(from: navigationAction) {
             delegate?.webViewViewController(self, didAuthenticateWithCode: code)
             decisionHandler(.cancel)
                        dismiss(animated: true)
+           
                    } else {
                        decisionHandler(.allow)
+                       UIBlockingProgressHUD.dismiss()
                    }
     }
 

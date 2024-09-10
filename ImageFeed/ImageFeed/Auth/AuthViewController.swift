@@ -15,6 +15,7 @@ protocol AuthViewControllerDelegate: AnyObject {
 
 class AuthViewController: UIViewController {
     weak var delegate: AuthViewControllerDelegate?
+  
    
     // MARK: - Private properties
     private let ShowWebViewSegueIdentifier = "ShowWebView"
@@ -47,8 +48,9 @@ extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         navigationController?.popToRootViewController(animated: true)
         ProgressHUD.animate()
-        OAuth2Service.shared.fetchOAuthToken(withCode: code) {[weak self] result in
+        OAuth2Service.shared.fetchOAuthToken(code) {[weak self] result in
             ProgressHUD.dismiss()
+            UIBlockingProgressHUD.dismiss()
             guard let self = self else { return }
             switch result {
             case .success(let token):
