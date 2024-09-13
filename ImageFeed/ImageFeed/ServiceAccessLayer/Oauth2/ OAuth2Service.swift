@@ -40,13 +40,20 @@ final class OAuth2Service {
     
     func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
-        guard lastCode != code else {
-                   completion(.failure(AuthServiceError.invalidRequest))
-                   return
+        if task != nil {                                    // 5
+                   if lastCode != code {                           // 6
+                       task?.cancel()                              // 7
+                   } else {
+                       completion(.failure(AuthServiceError.invalidRequest))
+                       return                                      // 8
+                   }
+               } else {
+                   if lastCode == code {                           // 9
+                       completion(.failure(AuthServiceError.invalidRequest))
+                       return
+                   }
                }
-
-               task?.cancel()
-               lastCode = code
+               lastCode = code                                     // 10
         guard
             let request = makeOAuthTokenRequest(code: code)
         else {

@@ -9,20 +9,25 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
- //   @IBOutlet private var avatarImageView: UIImageView!
- //   @IBOutlet private var nameLabel: UILabel!
- //   @IBOutlet private var loginNameLabel: UILabel!
- //   @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet private var avatarImageView: UIImageView!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var loginNameLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
 
- //   @IBOutlet private var logoutButton: UIButton!
+    @IBOutlet private var logoutButton: UIButton!
 
- //   @IBAction private func didTapLogoutButton() {
- //   }
+    @IBAction private func didTapLogoutButton() {
+    }
+    
     
     private var label: UILabel?
+    private let profileService = ProfileService.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateProfileDetails(profile: profileService.profile ?? Profile(username: "", name: "", bio: ""))
+        
      
         _ = UIImage(systemName: "person.crop.circle.fill")
         let imageView = UIImageView(image: UIImage(named: "Avatar"))
@@ -76,7 +81,16 @@ final class ProfileViewController: UIViewController {
           
         ])
         
+       
     }
+   
+    func updateProfileDetails(profile: Profile) {
+           nameLabel.text = profile.name
+           loginNameLabel.text = profile.loginName
+        descriptionLabel.text = profile.bio
+       }
+    
+    
        @objc
         private func didTapButton() {
             label?.removeFromSuperview()
