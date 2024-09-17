@@ -14,9 +14,7 @@ enum AuthServiceError: Error {
 final class OAuth2Service {
     
     static let shared = OAuth2Service()
-    
     private let urlSession = URLSession.shared
-    
     private var task: URLSessionTask?                       
     private var lastCode: String?
     private init() {}
@@ -85,8 +83,6 @@ final class OAuth2Service {
     }
 }
 
-   
-    
 enum DecoderError: Error, LocalizedError {
     case decodingError(Error)
 

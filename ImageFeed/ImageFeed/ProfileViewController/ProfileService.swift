@@ -47,10 +47,9 @@ final class ProfileService {
            self.task = task
            task.resume()
        }
-
-    
+ 
     func getProfileRequest() -> URLRequest? {
-        guard let url = URL(string: "https://api.unsplash.com/me") else {
+        guard let url = URL(string: Constants.Profile.profileURLString) else {
             
             preconditionFailure("Unable to construct profile request")
                    }
@@ -64,10 +63,10 @@ final class ProfileService {
 
                private func convert(profileResult: ProfileResult) -> Profile {
                    return Profile(
-                       username: profileResult.username,
-                       name: "\(profileResult.firstName) \(profileResult.lastName)",
-                       bio: profileResult.bio)
-               }
+                    username: profileResult.username,
+                              name: "\(profileResult.firstName ?? "") \(profileResult.lastName ?? "")",
+                    bio: profileResult.bio)
+                      }
         
     }
     
@@ -75,8 +74,9 @@ final class ProfileService {
 
 struct ProfileResult: Codable {
        let username: String
-       let firstName: String
-       let lastName: String
+       let firstName: String?
+       let lastName: String?
        let bio: String?
+    
     
 }

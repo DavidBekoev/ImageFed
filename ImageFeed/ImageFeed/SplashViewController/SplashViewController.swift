@@ -29,9 +29,8 @@ final class SplashViewController: UIViewController {
             
             checkAuthenticationStatus()
         }
-    }
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
+    
+    super.viewWillAppear(animated)
             setNeedsStatusBarAppearanceUpdate()
             
         }
@@ -79,10 +78,10 @@ final class SplashViewController: UIViewController {
 
 extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ authViewController: AuthViewController) {
-        dismiss(animated: true) //{ [weak self] in
+        dismiss(animated: true)// { [weak self] in
            // guard let self = self else { return }
            // self.switchToTabBarController()
-            
+       // }
             guard let token = oauth2TokenStorage.token else {
                 return
             }
@@ -101,8 +100,8 @@ extension SplashViewController: AuthViewControllerDelegate {
                 case .success(_):
                     self.switchToTabBarController()
                     UIBlockingProgressHUD.dismiss()
-                case .failure(_):
-                    preconditionFailure("Profile loading failed")
+                case .failure(let error):
+                    debugPrint("[SplashViewController fetchProfile] Profile loading failed\n \(error)")
                 }
             }
             UIBlockingProgressHUD.dismiss()

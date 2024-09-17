@@ -13,7 +13,7 @@ final class ProfileViewController: UIViewController {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var loginNameLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
-
+   
     @IBOutlet private var logoutButton: UIButton!
 
     @IBAction private func didTapLogoutButton() {
@@ -23,12 +23,10 @@ final class ProfileViewController: UIViewController {
     private var label: UILabel?
     private let profileService = ProfileService.shared
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        updateProfileDetails(profile: profileService.profile ?? Profile(username: "", name: "", bio: ""))
-        
-     
+    
         _ = UIImage(systemName: "person.crop.circle.fill")
         let imageView = UIImageView(image: UIImage(named: "Avatar"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,36 +58,35 @@ final class ProfileViewController: UIViewController {
         
         
         let loginNameLabel = UILabel()
-        let descriprionLabel = UILabel()
+        let descriptionLabel = UILabel()
         
         loginNameLabel.text = "@ekaterina_nov"
-        descriprionLabel.text = "Hello,World!"
+        descriptionLabel.text = "Hello,World!"
     
         loginNameLabel.textColor = .gray
-        descriprionLabel.textColor = .white
+        descriptionLabel.textColor = .white
         loginNameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loginNameLabel)
         
-        descriprionLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(descriprionLabel)
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
             loginNameLabel.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 25),
             loginNameLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            descriprionLabel.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 7),
-            descriprionLabel.leadingAnchor.constraint(equalTo: loginNameLabel.leadingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 7),
+            descriptionLabel.leadingAnchor.constraint(equalTo: loginNameLabel.leadingAnchor),
           
         ])
-        
+        updateProfileDetails(profile: profileService.profile ?? Profile(username: "", name: "", bio: ""))
+        func updateProfileDetails(profile: Profile) {
+            nameLabel.text = profile.name
+            loginNameLabel.text = profile.loginName
+            descriptionLabel.text = profile.bio
+        }
        
     }
-   
-    func updateProfileDetails(profile: Profile) {
-           nameLabel.text = profile.name
-           loginNameLabel.text = profile.loginName
-        descriptionLabel.text = profile.bio
-       }
-    
+
     
        @objc
         private func didTapButton() {
