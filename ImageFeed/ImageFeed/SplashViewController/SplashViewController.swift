@@ -11,7 +11,7 @@ import UIKit
 final class SplashViewController: UIViewController {
     private let ShowAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let oAuth2Storage = OAuth2TokenStorage.shared
-    //    private let oauth2Service = OAuth2Service.shared
+    //private let oauth2Service = OAuth2Service.shared
     private let storage = OAuth2TokenStorage()
     private let oauth2TokenStorage = OAuth2TokenStorage()
     private let profileService = ProfileService.shared
@@ -97,7 +97,16 @@ extension SplashViewController: AuthViewControllerDelegate {
             profileService.fetchProfile{ [weak self] result in
                 guard let self = self else { return }
                 switch result {
-                case .success(_):
+                case .success(let profileResult):
+                    ProfileImageService.shared.fetchProfileImageURL(username: profileResult.username) { [weak self] result in
+                        guard self != nil else { return }
+                                       switch result {
+                                       case .success(let avatarResult):
+                                           print("Avatar loaded")
+                                       case .failure(let error):
+                                           preconditionFailure("Avatar loading failed")
+                                       }
+                                   }
                     self.switchToTabBarController()
                     UIBlockingProgressHUD.dismiss()
                 case .failure(let error):

@@ -13,7 +13,7 @@ final class ProfileViewController: UIViewController {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var loginNameLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
-   
+    private var profileImageServiceObserver: NSObjectProtocol?
     @IBOutlet private var logoutButton: UIButton!
 
     @IBAction private func didTapLogoutButton() {
@@ -26,6 +26,17 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        profileImageServiceObserver = NotificationCenter.default
+            .addObserver(
+                           forName: ProfileImageService.didChangeNotification,
+                           object: nil,
+                           queue: .main
+                       ) { [weak self] _ in
+                           guard let self = self else { return }
+                           self.updateAvatar()
+                       }
+                   updateAvatar()
     
         _ = UIImage(systemName: "person.crop.circle.fill")
         let imageView = UIImageView(image: UIImage(named: "Avatar"))
@@ -84,9 +95,16 @@ final class ProfileViewController: UIViewController {
             loginNameLabel.text = profile.loginName
             descriptionLabel.text = profile.bio
         }
+      
        
     }
-
+    private func updateAvatar() {
+          guard
+              let profileImageURL = ProfileImageService.shared.avatarURL,
+              let url = URL(string: profileImageURL)
+          else { return }
+          // TODO [Sprint 11] Обновить аватар, используя Kingfisher
+      }
     
        @objc
         private func didTapButton() {
