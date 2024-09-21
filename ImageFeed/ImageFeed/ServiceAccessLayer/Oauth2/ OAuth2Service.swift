@@ -42,11 +42,13 @@ final class OAuth2Service {
                    if lastCode != code {                           // 6
                        task?.cancel()                              // 7
                    } else {
+                       print("Invalid request")
                        completion(.failure(AuthServiceError.invalidRequest))
                        return                                      // 8
                    }
                } else {
-                   if lastCode == code {                           // 9
+                   if lastCode == code { 
+                       print("Invalid request")
                        completion(.failure(AuthServiceError.invalidRequest))
                        return
                    }
@@ -55,26 +57,21 @@ final class OAuth2Service {
         guard
             let request = makeOAuthTokenRequest(code: code)
         else {
+            print("Invalid request")
             completion(.failure(AuthServiceError.invalidRequest))
             return
         }
-        let task = URLSession.shared.data(for: request) { [weak self] result in
+        let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
+                    guard let self else { return }
             switch result {
-            case .success(let data):
-                do {
-                    let decoder = JSONDecoder()
-                    let response = try decoder.decode(OAuthTokenResponseBody.self, from: data)
-                    let token = response.token
-                    completion(.success(token))
-                } catch {
-                    print("OAuth token decode error: \(error.localizedDescription)")
-                    completion(.failure(error))
-                }
+        case .success(let body):
+                       completion(.success(body.token))
             case .failure(let error):
+                print("Invalid request/n \(error)")
                 completion(.failure(error))
             }
-                       self?.task = nil
-                       self?.lastCode = nil
+                       self.task = nil
+                       self.lastCode = nil
         }
         
         self.task = task
