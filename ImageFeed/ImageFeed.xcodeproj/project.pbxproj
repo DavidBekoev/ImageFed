@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -334,6 +334,7 @@
 			mainGroup = EAA980922C372BA20095CE78;
 			packageReferences = (
 				EA7C03882C73AD88000370EB /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+				EA4243A12CA0AF6500B1A718 /* XCLocalSwiftPackageReference "../../../Downloads/ImageKingfisher/Dependencies" */,
 			);
 			productRefGroup = EAA9809C2C372BA30095CE78 /* Products */;
 			projectDirPath = "";
@@ -749,6 +750,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		EA4243A12CA0AF6500B1A718 /* XCLocalSwiftPackageReference "../../../Downloads/ImageKingfisher/Dependencies" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../../Downloads/ImageKingfisher/Dependencies;
+		};
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		EA7C03882C73AD88000370EB /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {

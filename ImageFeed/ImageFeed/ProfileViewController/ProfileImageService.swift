@@ -10,7 +10,7 @@ import Foundation
 final class ProfileImageService{
     
     static let shared = ProfileImageService()
-    private (set) var avatarURL: String?
+    private(set) var avatarURL: String?
     private let oAuth2Storage = OAuth2TokenStorage.shared
     private var task: URLSessionTask?
     static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
@@ -21,7 +21,7 @@ final class ProfileImageService{
     func fetchProfileImageURL(username: String, _ handler: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
                if task != nil {
-                   task?.cancel()
+                   return
                }
 
                guard let request = getProfileRequest(username: username)
@@ -35,13 +35,13 @@ final class ProfileImageService{
                    guard let self else { return }
             switch result {
             case .success(let body):
-                self.avatarURL = body.profile_image.small
-                handler(.success(body.profile_image.small))
+                self.avatarURL = body.profileImage.large
+                handler(.success(body.profileImage.large))
                 NotificationCenter.default
                     .post(
                         name: ProfileImageService.didChangeNotification,
                         object: self,
-                        userInfo: ["URL": body.profile_image])
+                        userInfo: ["URL": body.profileImage])
             
                    case .failure(let error):
                 print("Invalid request/n \(error)")
@@ -70,11 +70,13 @@ final class ProfileImageService{
 
 
 struct UserResult: Codable {
-    let profile_image: AvatarUrls
+    let profileImage: AvatarUrls
 }
 
 
 
 struct AvatarUrls: Codable {
     let small: String
+    let medium: String
+    let large: String
    }
