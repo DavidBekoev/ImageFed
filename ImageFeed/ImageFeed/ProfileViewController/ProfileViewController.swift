@@ -7,8 +7,8 @@
 
 
 import UIKit
-
 import Kingfisher
+
 
 
 final class ProfileViewController: UIViewController {
@@ -106,7 +106,7 @@ final class ProfileViewController: UIViewController {
             let profileImageURL = ProfileImageService.shared.avatarURL,
             let url = URL(string: profileImageURL)
         else { return }
-        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
+//        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
         let processor = RoundCornerImageProcessor(cornerRadius: 80)
    //     avatarImageView.backgroundColor = UIColor.ypBlack
    //     avatarImageView.tintColor = UIColor.ypBlack
