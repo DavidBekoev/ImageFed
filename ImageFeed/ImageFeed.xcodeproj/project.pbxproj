@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EA05EA212CA496F000815C2F /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EA05EA202CA496F000815C2F /* SwiftKeychainWrapper */; };
+		EA05EA252CA7244300815C2F /*  TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05EA242CA7242A00815C2F /*  TabBarController.swift */; };
 		EA1E21F82C484845007C1B81 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1E21F72C484845007C1B81 /* SingleImageViewController.swift */; };
 		EA2FD9F82C63E461000A0F62 /*  OAuth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2FD9F72C63E461000A0F62 /*  OAuth2Service.swift */; };
 		EA2FD9FA2C63E638000A0F62 /* URLSession+data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2FD9F92C63E638000A0F62 /* URLSession+data.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA05EA242CA7242A00815C2F /*  TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " TabBarController.swift"; sourceTree = "<group>"; };
 		EA1E21F72C484845007C1B81 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		EA2FD9F72C63E461000A0F62 /*  OAuth2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " OAuth2Service.swift"; sourceTree = "<group>"; };
 		EA2FD9F92C63E638000A0F62 /* URLSession+data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+data.swift"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				EAA980A02C372BA30095CE78 /* SceneDelegate.swift */,
 				EA2FD9F92C63E638000A0F62 /* URLSession+data.swift */,
 				EA9D94102C55405500CC1C2D /* Constans.swift */,
+				EAB1D9062CA899E300F4D1CD /* TabBarController */,
 				EA716B7B2C8E57DD008244E6 /* UIBlockingProgressHud */,
 				EA7C03832C714FC1000370EB /* SplashViewController */,
 				EA7C03822C714FA8000370EB /* Auth */,
@@ -243,6 +246,14 @@
 				EAA980C12C372BA40095CE78 /* ImageFeedUITestsLaunchTests.swift */,
 			);
 			path = ImageFeedUITests;
+			sourceTree = "<group>";
+		};
+		EAB1D9062CA899E300F4D1CD /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				EA05EA242CA7242A00815C2F /*  TabBarController.swift */,
+			);
+			path = TabBarController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +407,7 @@
 				EA716B7F2C91FD5D008244E6 /* Profile.swift in Sources */,
 				EA716B7D2C90C466008244E6 /* ProfileService.swift in Sources */,
 				EA9D94132C56D52C00CC1C2D /* AuthViewController.swift in Sources */,
+				EA05EA252CA7244300815C2F /*  TabBarController.swift in Sources */,
 				EA1E21F82C484845007C1B81 /* SingleImageViewController.swift in Sources */,
 				EA8B109C2C99FA41008D9693 /* ProfileImageService.swift in Sources */,
 				EA2FDA062C69467C000A0F62 /* WebViewViewControllerDelegate.swift in Sources */,

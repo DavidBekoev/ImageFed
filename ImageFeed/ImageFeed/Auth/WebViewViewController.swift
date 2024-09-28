@@ -5,7 +5,7 @@
 //  Created by Давид Бекоев on 28.07.2024.
 //
 import UIKit
-import WebKit
+@preconcurrency import WebKit
 
 fileprivate let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
 
@@ -78,7 +78,10 @@ final class WebViewViewController: UIViewController {
                      URLQueryItem(name: "response_type", value: "code"),
                      URLQueryItem(name: "scope", value: Constants.accessScope)
                  ]
-                 guard let url = urlComponents.url else { return }
+           guard let url = urlComponents.url else {
+               debugPrint("[WebViewViewController loadAuthView] some problem with queryItems")
+               return
+           }
                  let request = URLRequest(url: url)
                  webView.load(request)
       //     updateProgress()
@@ -115,6 +118,7 @@ extension WebViewViewController: WKNavigationDelegate {
         {
                    return codeItem.value
                } else {
+                   debugPrint("[WebViewViewController code] unsuccessful attempt to get codeItem")
                    return nil
                }
     }

@@ -39,39 +39,39 @@ final class OAuth2Service {
     func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         if task != nil {                                    // 5
-                   if lastCode != code {                           // 6
-                       task?.cancel()                              // 7
-                   } else {
-                       print("Invalid request")
-                       completion(.failure(AuthServiceError.invalidRequest))
-                       return                                      // 8
-                   }
-               } else {
-                   if lastCode == code { 
-                       print("Invalid request")
-                       completion(.failure(AuthServiceError.invalidRequest))
-                       return
-                   }
-               }
-               lastCode = code                                     // 10
+            if lastCode != code {                           // 6
+                task?.cancel()                              // 7
+            } else {
+                debugPrint("[OAuth2Service fetchOAuthToken] Invalid request")
+                completion(.failure(AuthServiceError.invalidRequest))
+                return                                      // 8
+            }
+        } else {
+            if lastCode == code {
+                debugPrint("[OAuth2Service fetchOAuthToken] Invalid request")
+                completion(.failure(AuthServiceError.invalidRequest))
+                return
+            }
+        }
+        lastCode = code                                     // 10
         guard
             let request = makeOAuthTokenRequest(code: code)
         else {
-            print("Invalid request")
+            debugPrint("[OAuth2Service fetchOAuthToken] Invalid request")
             completion(.failure(AuthServiceError.invalidRequest))
             return
         }
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
-                    guard let self else { return }
+            guard let self else { return }
             switch result {
-        case .success(let body):
-                       completion(.success(body.token))
+            case .success(let body):
+                completion(.success(body.token))
             case .failure(let error):
-                print("Invalid request/n \(error)")
+                debugPrint("[OAuth2Service fetchOAuthToken] Invalid request/n \(error)")
                 completion(.failure(error))
             }
-                       self.task = nil
-                       self.lastCode = nil
+            self.task = nil
+            self.lastCode = nil
         }
         
         self.task = task
@@ -82,7 +82,7 @@ final class OAuth2Service {
 
 enum DecoderError: Error, LocalizedError {
     case decodingError(Error)
-
+    
     var errorDescription: String? {
         switch self {
         case .decodingError(let error):

@@ -106,25 +106,25 @@ final class ProfileViewController: UIViewController {
             let profileImageURL = ProfileImageService.shared.avatarURL,
             let url = URL(string: profileImageURL)
         else { return }
-//        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
+        //        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
         let processor = RoundCornerImageProcessor(cornerRadius: 80)
-   //     avatarImageView.backgroundColor = UIColor.ypBlack
-   //     avatarImageView.tintColor = UIColor.ypBlack
+        avatarImageView.backgroundColor = UIColor.black
+        avatarImageView.tintColor = UIColor.black
         avatarImageView.kf.setImage(with: url,
-                                placeholder: UIImage(named: "placeholder.jpeg"),
-                                options: [
-                                    .processor(processor),
-                                    .cacheSerializer(FormatIndicatedCacheSerializer.png)
-                                ])
+                                    placeholder: UIImage(named: "placeholder.jpeg"),
+                                    options: [
+                                        .processor(processor),
+                                        .cacheSerializer(FormatIndicatedCacheSerializer.png)
+                                    ])
         
     }
 
-       @objc
-        private func didTapButton() {
-            label?.removeFromSuperview()
-            label = nil
-            
-           
-        }
+    @objc
+    private func didTapButton() {
+        label?.removeFromSuperview()
+        label = nil
+        
+        
+    }
 }
 

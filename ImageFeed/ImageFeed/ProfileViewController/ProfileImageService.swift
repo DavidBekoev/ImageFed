@@ -20,19 +20,19 @@ final class ProfileImageService{
     
     func fetchProfileImageURL(username: String, _ handler: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
-               if task != nil {
-                   return
-               }
-
-               guard let request = getProfileRequest(username: username)
-               else {
-                   print("Invalid request")
-                   handler(.failure(AuthServiceError.invalidRequest))
-                   return
-               }
-
+        if task != nil {
+            return
+        }
+        
+        guard let request = getProfileRequest(username: username)
+        else {
+            debugPrint("[ProfileImageService fetchProfileImageURL] Invalid request")
+            handler(.failure(AuthServiceError.invalidRequest))
+            return
+        }
+        
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<UserResult, Error>) in
-                   guard let self else { return }
+            guard let self else { return }
             switch result {
             case .success(let body):
                 self.avatarURL = body.profileImage.large
@@ -42,14 +42,14 @@ final class ProfileImageService{
                         name: ProfileImageService.didChangeNotification,
                         object: self,
                         userInfo: ["URL": body.profileImage])
-            
-                   case .failure(let error):
-                print("Invalid request/n \(error)")
-                       handler(.failure(error))
-                   }
-               }
-               self.task = task
-               task.resume()
+                
+            case .failure(let error):
+                debugPrint("[ProfileImageService fetchProfileImageURL] Invalid request/n \(error)")
+                handler(.failure(error))
+            }
+        }
+        self.task = task
+        task.resume()
         
     }
     
@@ -57,14 +57,14 @@ final class ProfileImageService{
     func getProfileRequest(username: String) -> URLRequest? {
         guard let url = URL(string: "https://api.unsplash.com/users/\(username)") else {
             preconditionFailure("Unable to construct profile request")
-                  }
-                  var request = URLRequest(url: url)
-                  guard let token = oAuth2Storage.token else {
-                      preconditionFailure("Token is nil")
-                  }
-                  request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-                  return request
-              }
+        }
+        var request = URLRequest(url: url)
+        guard let token = oAuth2Storage.token else {
+            preconditionFailure("Token is nil")
+        }
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        return request
+    }
 }
 
 

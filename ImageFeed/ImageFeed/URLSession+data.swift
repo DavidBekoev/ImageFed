@@ -25,7 +25,7 @@ enum NetworkError: Error, LocalizedError {
     }
 }
 
-    
+
 extension URLSession {
     func data(
         for request: URLRequest,
@@ -42,14 +42,14 @@ extension URLSession {
                 if 200 ..< 300 ~= statusCode {
                     fulfillCompletionOnTheMainThread(.success(data))
                 } else {
-                    print("Request failed with statusCode \(statusCode)")
+                    debugPrint("[URLSession data] Request failed with statusCode \(statusCode)")
                     fulfillCompletionOnTheMainThread(.failure(NetworkError.httpStatusCodeError(statusCode)))
                 }
             } else if let error = error {
-                print("Request failed with error\n \(error)")
+                debugPrint("[URLSession data] Request failed with error\n \(error)")
                 fulfillCompletionOnTheMainThread(.failure(NetworkError.urlRequestError(error)))
             } else {
-                print("Request failed with error\n \(String(describing: error))")
+                debugPrint("[URLSession data] Request failed with error\n \(String(describing:error))")
                 fulfillCompletionOnTheMainThread(.failure(NetworkError.urlSessionError))
             }
         })
@@ -59,26 +59,30 @@ extension URLSession {
     
     
     func objectTask<T: Decodable>(
-            for request: URLRequest,
-            completion: @escaping (Result<T, Error>) -> Void
-        ) -> URLSessionTask {
-            let decoder = JSONDecoder()
-            let task = data(for: request) { (result: Result<Data, Error>) in
-                switch result {
-                case .success(let data):
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    do {
-                        let responseBody = try decoder.decode(T.self, from: data)
-                        completion(.success(responseBody))
-                    } catch {
-                        print("Ошибка декодирования: \(error.localizedDescription), Данные: \(String(data: data, encoding: .utf8) ?? "")")
-                        completion(.failure(DecoderError.decodingError(error)))
-                    }
-                case .failure(let error):
-                    print("Request failed with error\n \(String(describing: error))")
-                    completion(.failure(error))
+        for request: URLRequest,
+        completion: @escaping (Result<T, Error>) -> Void
+    ) -> URLSessionTask {
+        let decoder = JSONDecoder()
+        let task = data(for: request) { (result: Result<Data, Error>) in
+            switch result {
+            case .success(let data):
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                do {
+                    let responseBody = try decoder.decode(T.self, from: data)
+                    completion(.success(responseBody))
+                } catch {
+                    debugPrint("""
+                                           [URLSession objectTask] 
+                                               Ошибка декодирования: \(error.localizedDescription),
+                                               Данные: \(String(data: data, encoding: .utf8) ?? "")
+                                           """)
+                    completion(.failure(DecoderError.decodingError(error)))
                 }
+            case .failure(let error):
+                debugPrint("[URLSession objectTask] Request failed with error\n \(String(describing: error))")
+                completion(.failure(error))
             }
-            return task
         }
+        return task
+    }
 }
