@@ -55,7 +55,7 @@ final class ProfileImageService{
     
     
     func getProfileRequest(username: String) -> URLRequest? {
-        guard let url = URL(string: "https://api.unsplash.com/users/\(username)") else {
+        guard let url = URL(string: "\(Constants.Profile.usersURLString)\(username)") else {
             preconditionFailure("Unable to construct profile request")
         }
         var request = URLRequest(url: url)
@@ -72,8 +72,6 @@ final class ProfileImageService{
 struct UserResult: Codable {
     let profileImage: AvatarUrls
 }
-
-
 
 struct AvatarUrls: Codable {
     let small: String

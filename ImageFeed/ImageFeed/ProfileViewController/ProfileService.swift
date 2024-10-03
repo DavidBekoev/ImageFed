@@ -61,9 +61,9 @@ final class ProfileService {
         return Profile(
             username: profileResult.username,
             name: "\(profileResult.firstName ?? "") \(profileResult.lastName ?? "")",
-            bio: profileResult.bio)
+         bio: profileResult.bio)
+        
     }
-    
 }
     
 

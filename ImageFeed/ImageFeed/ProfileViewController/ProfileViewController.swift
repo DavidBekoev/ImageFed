@@ -21,12 +21,12 @@ final class ProfileViewController: UIViewController {
     
     @IBAction private func didTapLogoutButton() {
     }
-    
+    let ProfileViewController = TabBarController.self
     
     private var label: UILabel?
     private let profileService = ProfileService.shared
     
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +40,11 @@ final class ProfileViewController: UIViewController {
                 self.updateAvatar()
             }
         updateAvatar()
+        
+        
+        
+        
+        
         
         _ = UIImage(systemName: "person.crop.circle.fill")
         let imageView = UIImageView(image: UIImage(named: "Avatar"))
@@ -92,33 +97,42 @@ final class ProfileViewController: UIViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: loginNameLabel.leadingAnchor),
             
         ])
+        
+        
         updateProfileDetails(profile: profileService.profile ?? Profile(username: "", name: "", bio: ""))
-        func updateProfileDetails(profile: Profile) {
-            nameLabel.text = profile.name
-            loginNameLabel.text = profile.loginName
-            descriptionLabel.text = profile.bio
-        }
+        
+       
         
         
     }
-    private func updateAvatar() {
-        guard
-            let profileImageURL = ProfileImageService.shared.avatarURL,
-            let url = URL(string: profileImageURL)
-        else { return }
-        //        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
-        let processor = RoundCornerImageProcessor(cornerRadius: 80)
-        avatarImageView.backgroundColor = UIColor.black
-        avatarImageView.tintColor = UIColor.black
-        avatarImageView.kf.setImage(with: url,
-                                    placeholder: UIImage(named: "placeholder.jpeg"),
-                                    options: [
-                                        .processor(processor),
-                                        .cacheSerializer(FormatIndicatedCacheSerializer.png)
-                                    ])
-        
+    
+    func updateProfileDetails(profile: Profile) {
+        nameLabel.text = profile.name
+        loginNameLabel.text = profile.loginName
+        descriptionLabel.text = profile.bio
     }
 
+    func updateAvatar() {
+       guard
+           let profileImageURL = ProfileImageService.shared.avatarURL,
+           let url = URL(string: profileImageURL)
+       else { return }
+               // TODO [Sprint 11] Обновить аватар, используя Kingfisher
+        let processor = RoundCornerImageProcessor(cornerRadius: 40)
+        avatarImageView.backgroundColor = .black
+        avatarImageView.tintColor = .black
+        avatarImageView.kf.setImage(with: url,
+                              placeholder: UIImage(named: "placeholder.jpeg"),
+                              options: [
+                                .processor(processor),
+                                .cacheSerializer(FormatIndicatedCacheSerializer.png)
+                              ])
+       
+   }
+    
+    
+    
+   
     @objc
     private func didTapButton() {
         label?.removeFromSuperview()

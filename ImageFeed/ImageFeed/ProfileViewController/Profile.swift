@@ -15,3 +15,15 @@ struct Profile {
     }
     let bio: String?
 }
+
+//struct UserResult: Codable {
+//    let profileImage: AvatarUrls
+//}
+//
+//
+//
+//struct AvatarUrls: Codable {
+//    let small: String
+//    let medium: String
+//    let large: String
+//   }

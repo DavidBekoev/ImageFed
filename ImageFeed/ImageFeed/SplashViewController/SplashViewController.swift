@@ -35,32 +35,41 @@ final class SplashViewController: UIViewController {
             logoImage.widthAnchor.constraint(equalToConstant: 75),
             logoImage.heightAnchor.constraint(equalToConstant: 77)
         ])
+
+     
+            
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+      
         if let token = oAuth2Storage.token {
             debugPrint(token)
             fetchProfile(token)
             switchToTabBarController()
         } else {
-            
-            checkAuthenticationStatus()
-        }
-        
+           
+                    checkAuthenticationStatus()
+          
+            }
+          
+       
+    
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
         
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
     
+    
+   
     private func checkAuthenticationStatus() {
-        if let token = oauth2TokenStorage.token {
+        if oauth2TokenStorage.token != nil {
             loadUserInfoAndProceed()
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: .main)
@@ -71,6 +80,7 @@ final class SplashViewController: UIViewController {
                 assertionFailure ("failed init AuthViewController")
                 return
             }
+           
             authViewController.delegate = self
             authViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             present(authViewController, animated: true, completion: nil)
@@ -95,12 +105,6 @@ final class SplashViewController: UIViewController {
 }
 
     
-
-       
-    
-
-
-
 extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ authViewController: AuthViewController) {
         dismiss(animated: true)// { [weak self] in

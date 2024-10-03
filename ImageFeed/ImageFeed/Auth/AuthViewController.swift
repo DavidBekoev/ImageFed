@@ -50,27 +50,31 @@ extension AuthViewController: WebViewViewControllerDelegate {
         ProgressHUD.animate()
         OAuth2Service.shared.fetchOAuthToken(code) {[weak self] result in
             ProgressHUD.dismiss()
-            UIBlockingProgressHUD.dismiss()
+         //   UIBlockingProgressHUD.dismiss()
+          
+            
             guard let self = self else { return }
             switch result {
             case .success(let token):
-                DispatchQueue.main.async {
+             //   DispatchQueue.main.async {
                     OAuth2TokenStorage.shared.token = token
                     print("Actual token: \(token)")
                     self.delegate?.didAuthenticate(self)
-                }
+        //        }
             case .failure(let error):
                 debugPrint("[AuthViewController webViewViewController] \(error.localizedDescription)")
                 vc.dismiss(animated: true)
-                
+                UIBlockingProgressHUD.dismiss()
                 let alert = UIAlertController(title: "Что-то пошло не так",
-                                              message: "Не удалось войти в систему",
-                                              preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default) { _ in
-                    alert.dismiss(animated: true)
-                }
-                alert.addAction(action)
-                self.present(alert, animated: true, completion: nil)
+                                                        message: "Не удалось войти в систему",
+                                                        preferredStyle: .alert)
+                          let action = UIAlertAction(title: "OK", style: .default) { _ in
+                              alert.dismiss(animated: true)
+                          }
+                          alert.addAction(action)
+                          self.present(alert, animated: true, completion: nil)
+                
+               
             }
         }
     }
