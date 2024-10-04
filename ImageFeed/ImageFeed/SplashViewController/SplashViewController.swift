@@ -44,31 +44,32 @@ final class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-      
+        
         if let token = oAuth2Storage.token {
             debugPrint(token)
             fetchProfile(token)
             switchToTabBarController()
         } else {
-           
-                    checkAuthenticationStatus()
-          
-            }
-          
-       
-    
-        super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
+            
+            checkAuthenticationStatus()
+            //
+        }
         
     }
+    
+    //    super.viewWillAppear(animated)
+    //    setNeedsStatusBarAppearanceUpdate()
+        
+   // }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
+  //  override var preferredStatusBarStyle: UIStatusBarStyle {
+  //      .lightContent
+  //  }
     
-    
+
    
     private func checkAuthenticationStatus() {
+    
         if oauth2TokenStorage.token != nil {
             loadUserInfoAndProceed()
         } else {
@@ -107,9 +108,9 @@ final class SplashViewController: UIViewController {
     
 extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ authViewController: AuthViewController) {
-        dismiss(animated: true)// { [weak self] in
-        // guard let self = self else { return }
-        // self.switchToTabBarController()
+        dismiss(animated: true) //{ [weak self] in
+         //guard let self = self else { return }
+         //self.switchToTabBarController()
         // }
         guard let token = oauth2TokenStorage.token else {
             return
@@ -119,30 +120,29 @@ extension SplashViewController: AuthViewControllerDelegate {
         UIBlockingProgressHUD.dismiss()
     }
     
-
     
-    func fetchProfile(_ token: String) {
+    
+    private func fetchProfile(_ token: String) {
         UIBlockingProgressHUD.show()
-        profileService.fetchProfile { result in
+        profileService.fetchProfile { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let profileResult):
                 debugPrint("[SplashViewController fetchProfile] Start loading avatar")
-                ProfileImageService.shared.fetchProfileImageURL(username: profileResult.username) { result in
-                    switch result {
-                    case .success(let avatarResult):
-                        debugPrint("[SplashViewController fetchProfile] Avatar loaded")
-                    case .failure(let error):
-                        debugPrint("[SplashViewController fetchProfile] Avatar loading failed\n \(error)")
-                    }
-                }
+                              ProfileImageService.shared.fetchProfileImageURL(username: profileResult.username) { result in
+                                   switch result {
+                                   case .success(let avatarResult):
+                                       debugPrint("[SplashViewController fetchProfile] Avatar loaded")
+                                   case .failure(let error):
+                                       debugPrint("[SplashViewController fetchProfile] Avatar loading failed\n \(error)")
+                                   }
+                               }
                 self.switchToTabBarController()
                 UIBlockingProgressHUD.dismiss()
             case .failure(let error):
-                debugPrint("[SplashViewController fetchProfile] Profile loading failed\n \(error)")
+                preconditionFailure("Profile loading failed\n \(error)")
             }
         }
         UIBlockingProgressHUD.dismiss()
     }
-    
 }
-

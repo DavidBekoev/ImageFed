@@ -29,7 +29,8 @@ final class ProfileViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .color1
+       
         profileImageServiceObserver = NotificationCenter.default
             .addObserver(
                 forName: ProfileImageService.didChangeNotification,
@@ -41,10 +42,11 @@ final class ProfileViewController: UIViewController {
             }
         updateAvatar()
         
+       
         
         
-        
-        
+       
+       
         
         _ = UIImage(systemName: "person.crop.circle.fill")
         let imageView = UIImageView(image: UIImage(named: "Avatar"))
@@ -98,20 +100,16 @@ final class ProfileViewController: UIViewController {
             
         ])
         
-        
         updateProfileDetails(profile: profileService.profile ?? Profile(username: "", name: "", bio: ""))
         
-       
-        
+        func updateProfileDetails(profile: Profile) {
+            nameLabel.text = profile.name
+            loginNameLabel.text = profile.loginName
+            descriptionLabel.text = profile.bio
+        }
         
     }
     
-    func updateProfileDetails(profile: Profile) {
-        nameLabel.text = profile.name
-        loginNameLabel.text = profile.loginName
-        descriptionLabel.text = profile.bio
-    }
-
     func updateAvatar() {
        guard
            let profileImageURL = ProfileImageService.shared.avatarURL,
@@ -130,9 +128,8 @@ final class ProfileViewController: UIViewController {
        
    }
     
+
     
-    
-   
     @objc
     private func didTapButton() {
         label?.removeFromSuperview()
