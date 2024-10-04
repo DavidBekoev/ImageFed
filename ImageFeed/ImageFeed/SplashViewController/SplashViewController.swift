@@ -9,7 +9,6 @@
 import UIKit
 
 final class SplashViewController: UIViewController {
-    //  private let ShowAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let logoImage: UIImageView = UIImageView()
     private let oAuth2Storage = OAuth2TokenStorage.shared
     //private let oauth2Service = OAuth2Service.shared
@@ -108,17 +107,21 @@ final class SplashViewController: UIViewController {
     
 extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ authViewController: AuthViewController) {
-        dismiss(animated: true) //{ [weak self] in
-         //guard let self = self else { return }
-         //self.switchToTabBarController()
-        // }
-        guard let token = oauth2TokenStorage.token else {
-            return
-        }
-        fetchProfile(token)
-        switchToTabBarController()
-        UIBlockingProgressHUD.dismiss()
-    }
+        dismiss(animated: true)
+        guard let token = oAuth2Storage.token else {
+                 return
+             }
+             fetchProfile(token)
+             switchToTabBarController()
+             UIBlockingProgressHUD.dismiss()
+         }
+//        guard let token = oauth2TokenStorage.token else {
+//            return
+//        }
+//        fetchProfile(token)
+//        switchToTabBarController()
+//        UIBlockingProgressHUD.dismiss()
+    
     
     
     

@@ -56,7 +56,7 @@ extension AuthViewController: WebViewViewControllerDelegate {
             guard let self = self else { return }
             switch result {
             case .success(let token):
-             //   DispatchQueue.main.async {
+           //     DispatchQueue.main.async {
                     OAuth2TokenStorage.shared.token = token
                     print("Actual token: \(token)")
                     self.delegate?.didAuthenticate(self)

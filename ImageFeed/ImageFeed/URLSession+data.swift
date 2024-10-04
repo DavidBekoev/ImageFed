@@ -66,7 +66,7 @@ extension URLSession {
           let task = data(for: request) { (result: Result<Data, Error>) in
               switch result {
               case .success(let data):
-                  decoder.keyDecodingStrategy = .convertFromSnakeCase
+            //      decoder.keyDecodingStrategy = .convertFromSnakeCase
                   do {
                       let responseBody = try decoder.decode(T.self, from: data)
                       completion(.success(responseBody))

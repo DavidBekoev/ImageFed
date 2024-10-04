@@ -7,6 +7,10 @@
 import UIKit
 @preconcurrency import WebKit
 
+enum WebViewConstants {
+        static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    }
+
 fileprivate let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
 
 final class WebViewViewController: UIViewController {
@@ -14,13 +18,7 @@ final class WebViewViewController: UIViewController {
     @IBAction  func didTapBackButton(_ sender: Any?) {
         delegate?.webViewViewControllerDidCancel(self)
     }
-    
     @IBOutlet private var progressView: UIProgressView!
-    
-    enum WebViewConstants {
-            static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
-        }
-    
     weak var delegate: WebViewViewControllerDelegate?
     private var estimatedProgressObservation: NSKeyValueObservation?
 
@@ -28,7 +26,6 @@ final class WebViewViewController: UIViewController {
            super.viewDidLoad()
            webView.navigationDelegate = self
            loadAuthView()
-   //        updateProgress()
         estimatedProgressObservation = webView.observe(
                    \.estimatedProgress,
                     options: [],
@@ -41,27 +38,11 @@ final class WebViewViewController: UIViewController {
 
        override func viewDidAppear(_ animated: Bool) {
            super.viewDidAppear(animated)
-     
            updateProgress()
        }
 
        override func viewWillDisappear(_ animated: Bool) {
            super.viewWillDisappear(animated)
-     //      webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
-           
-   //    }
-
-    //   override func observeValue(
-   //        forKeyPath keyPath: String?,
-   //        of object: Any?,
-   //        change: [NSKeyValueChangeKey : Any]?,
-  //         context: UnsafeMutableRawPointer?
- //      ) {
- //          if keyPath == #keyPath(WKWebView.estimatedProgress) {
- //              updateProgress()
-   //        } else {
-   //            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-   //        }
        }
 
        // MARK: - Private methods

@@ -65,7 +65,7 @@ final class OAuth2Service {
             guard let self else { return }
             switch result {
             case .success(let body):
-                completion(.success(body.token))
+                           completion(.success(body.token))
             case .failure(let error):
                 debugPrint("[OAuth2Service fetchOAuthToken] Invalid request/n \(error)")
                 completion(.failure(error))

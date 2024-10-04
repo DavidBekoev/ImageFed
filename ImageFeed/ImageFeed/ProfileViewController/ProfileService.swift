@@ -58,12 +58,11 @@ final class ProfileService {
     }
     
     private func convert(profileResult: ProfileResult) -> Profile {
-        return Profile(
-            username: profileResult.username,
-            name: "\(profileResult.firstName ?? "") \(profileResult.lastName ?? "")",
-         bio: profileResult.bio)
-        
-    }
+           return Profile(
+               username: profileResult.username,
+               name: "\(profileResult.firstName ?? "") \(profileResult.lastName ?? "")",
+                          bio: profileResult.bio)
+       }
 }
     
 
