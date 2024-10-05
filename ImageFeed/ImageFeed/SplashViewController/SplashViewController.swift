@@ -108,21 +108,21 @@ final class SplashViewController: UIViewController {
 extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ authViewController: AuthViewController) {
         dismiss(animated: true)
-        guard let token = oAuth2Storage.token else {
-                 return
-             }
-             fetchProfile(token)
-             switchToTabBarController()
-             UIBlockingProgressHUD.dismiss()
-         }
+                guard let token = oAuth2Storage.token else {
+                         return
+                     }
+                     fetchProfile(token)
+                     switchToTabBarController()
+                     UIBlockingProgressHUD.dismiss()
+                 }
 //        guard let token = oauth2TokenStorage.token else {
 //            return
 //        }
 //        fetchProfile(token)
 //        switchToTabBarController()
 //        UIBlockingProgressHUD.dismiss()
-    
-    
+//        
+//    }
     
     
     private func fetchProfile(_ token: String) {
