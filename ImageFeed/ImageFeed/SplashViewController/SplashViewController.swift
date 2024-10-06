@@ -16,7 +16,6 @@ final class SplashViewController: UIViewController {
     private let oauth2TokenStorage = OAuth2TokenStorage()
     private let profileService = ProfileService.shared
     
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -61,9 +60,9 @@ final class SplashViewController: UIViewController {
         
    // }
 
-  //  override var preferredStatusBarStyle: UIStatusBarStyle {
-  //      .lightContent
-  //  }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
     
 
    
@@ -108,44 +107,38 @@ final class SplashViewController: UIViewController {
 extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ authViewController: AuthViewController) {
         dismiss(animated: true)
-                guard let token = oAuth2Storage.token else {
-                         return
-                     }
-                     fetchProfile(token)
-                     switchToTabBarController()
-                     UIBlockingProgressHUD.dismiss()
-                 }
-//        guard let token = oauth2TokenStorage.token else {
-//            return
-//        }
-//        fetchProfile(token)
-//        switchToTabBarController()
-//        UIBlockingProgressHUD.dismiss()
-//        
-//    }
-    
-    
-    private func fetchProfile(_ token: String) {
-        UIBlockingProgressHUD.show()
-        profileService.fetchProfile { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let profileResult):
-                debugPrint("[SplashViewController fetchProfile] Start loading avatar")
-                              ProfileImageService.shared.fetchProfileImageURL(username: profileResult.username) { result in
-                                   switch result {
-                                   case .success(let avatarResult):
-                                       debugPrint("[SplashViewController fetchProfile] Avatar loaded")
-                                   case .failure(let error):
-                                       debugPrint("[SplashViewController fetchProfile] Avatar loading failed\n \(error)")
-                                   }
-                               }
-                self.switchToTabBarController()
-                UIBlockingProgressHUD.dismiss()
-            case .failure(let error):
-                preconditionFailure("Profile loading failed\n \(error)")
-            }
+        guard let token = oAuth2Storage.token else {
+            return
         }
+        fetchProfile(token)
+        switchToTabBarController()
         UIBlockingProgressHUD.dismiss()
     }
-}
+    
+    
+    
+        private func fetchProfile(_ token: String) {
+            UIBlockingProgressHUD.show()
+            profileService.fetchProfile { result in
+                      switch result {
+                      case .success(let profileResult):
+                          debugPrint("[SplashViewController fetchProfile] Start loading Avatar")
+                                        ProfileImageService.shared.fetchProfileImageURL(username: profileResult.username) { result in
+                                            switch result {
+                                            case .success(let avatarResult):
+                                                debugPrint("[SplashViewController fetchProfile] Avatar loaded")
+                                            case .failure(let error):
+                                                debugPrint("[SplashViewController fetchProfile] Avatar loading failed\n \(error)")
+                                                                   }
+                                                               }
+    
+                   self.switchToTabBarController()
+                    UIBlockingProgressHUD.dismiss()
+                case .failure(let error):
+                          debugPrint("[SplashViewController fetchProfile] Profile loading failed\n \(error)")
+                }
+            }
+            UIBlockingProgressHUD.dismiss()
+        }
+    }
+

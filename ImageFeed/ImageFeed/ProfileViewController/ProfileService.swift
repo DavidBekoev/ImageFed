@@ -15,34 +15,36 @@ final class ProfileService {
     private var task: URLSessionTask?
     private init() {}
     
+    
     func fetchProfile(handler: @escaping(_ result: Result<ProfileResult, Error>) -> Void) {
-        assert(Thread.isMainThread)
-        if task != nil {
-            return
-        }
-        
-        guard let request = getProfileRequest()
-        else {
-            debugPrint("[ProfileService fetchProfile] Invalid request")
-            handler(.failure(AuthServiceError.invalidRequest))
-            return
-        }
+           assert(Thread.isMainThread)
+           if task != nil {
+               return
+           }
+
+           guard let request = getProfileRequest()
+           else {
+               debugPrint("[ProfileService fetchProfile] Invalid request")
+               handler(.failure(AuthServiceError.invalidRequest))
+               return
+           }
 
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<ProfileResult, Error>) in
-            guard let self else { return }
+               guard let self else { return }
             switch result {
+                
             case .success(let body):
                 self.profile = convert(profileResult: body)
                 handler(.success(body))
-                
             case .failure(let error):
                 debugPrint("[ProfileService fetchProfile] Invalid request/n \(error)")
                 handler(.failure(error))
             }
-        }
-        self.task = task
-        task.resume()
-    }
+           }
+           self.task = task
+           task.resume()
+       }
+
     
     func getProfileRequest() -> URLRequest? {
         guard let url = URL(string: Constants.Profile.profileURLString) else {
