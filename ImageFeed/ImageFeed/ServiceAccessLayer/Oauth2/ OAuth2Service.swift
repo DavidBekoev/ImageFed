@@ -29,6 +29,7 @@ final class OAuth2Service {
             URLQueryItem(name: "grant_type", value: "authorization_code")
         ]
         guard let url = urlComponents?.url else {
+            debugPrint("[OAuth2Service getTokenURLRequest] url is nil")
             return nil
         }
         var request = URLRequest(url: url)

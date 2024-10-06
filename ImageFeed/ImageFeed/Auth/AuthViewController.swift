@@ -49,11 +49,9 @@ extension AuthViewController: WebViewViewControllerDelegate {
         navigationController?.popToRootViewController(animated: true)
         ProgressHUD.animate()
         OAuth2Service.shared.fetchOAuthToken(code) {[weak self] result in
-            ProgressHUD.dismiss()
           
-            
-            
             guard let self = self else { return }
+            ProgressHUD.dismiss()
             switch result {
             case .success(let token):
                 OAuth2TokenStorage.shared.token = token

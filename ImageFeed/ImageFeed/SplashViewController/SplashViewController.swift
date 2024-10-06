@@ -11,7 +11,6 @@ import UIKit
 final class SplashViewController: UIViewController {
     private let logoImage: UIImageView = UIImageView()
     private let oAuth2Storage = OAuth2TokenStorage.shared
-    //private let oauth2Service = OAuth2Service.shared
     private let storage = OAuth2TokenStorage()
     private let oauth2TokenStorage = OAuth2TokenStorage()
     private let profileService = ProfileService.shared
@@ -50,15 +49,11 @@ final class SplashViewController: UIViewController {
         } else {
             
             checkAuthenticationStatus()
-            //
+          
+         
         }
-        
     }
     
-    //    super.viewWillAppear(animated)
-    //    setNeedsStatusBarAppearanceUpdate()
-    
-    // }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -105,8 +100,8 @@ final class SplashViewController: UIViewController {
 
 
 extension SplashViewController: AuthViewControllerDelegate {
-    func didAuthenticate(_ authViewController: AuthViewController) {
-        dismiss(animated: true)
+    func didAuthenticate(_ vc: AuthViewController) {
+        vc.dismiss(animated: true)
         guard let token = oAuth2Storage.token else {
             return
         }
