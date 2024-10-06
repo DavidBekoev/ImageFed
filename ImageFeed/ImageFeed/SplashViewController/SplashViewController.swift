@@ -33,9 +33,9 @@ final class SplashViewController: UIViewController {
             logoImage.widthAnchor.constraint(equalToConstant: 75),
             logoImage.heightAnchor.constraint(equalToConstant: 77)
         ])
-
-     
-            
+        
+        
+        
     }
     
     
@@ -57,17 +57,17 @@ final class SplashViewController: UIViewController {
     
     //    super.viewWillAppear(animated)
     //    setNeedsStatusBarAppearanceUpdate()
-        
-   // }
-
+    
+    // }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
     
-
-   
-    private func checkAuthenticationStatus() {
     
+    
+    private func checkAuthenticationStatus() {
+        
         if oauth2TokenStorage.token != nil {
             loadUserInfoAndProceed()
         } else {
@@ -79,7 +79,7 @@ final class SplashViewController: UIViewController {
                 assertionFailure ("failed init AuthViewController")
                 return
             }
-           
+            
             authViewController.delegate = self
             authViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             present(authViewController, animated: true, completion: nil)
@@ -90,7 +90,7 @@ final class SplashViewController: UIViewController {
     private func loadUserInfoAndProceed() {
         switchToTabBarController()
     }
-        
+    
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
@@ -103,7 +103,7 @@ final class SplashViewController: UIViewController {
     
 }
 
-    
+
 extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ authViewController: AuthViewController) {
         dismiss(animated: true)
@@ -117,28 +117,28 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     
     
-        private func fetchProfile(_ token: String) {
-            UIBlockingProgressHUD.show()
-            profileService.fetchProfile { result in
-                      switch result {
-                      case .success(let profileResult):
-                          debugPrint("[SplashViewController fetchProfile] Start loading Avatar")
-                                        ProfileImageService.shared.fetchProfileImageURL(username: profileResult.username) { result in
-                                            switch result {
-                                            case .success(let avatarResult):
-                                                debugPrint("[SplashViewController fetchProfile] Avatar loaded")
-                                            case .failure(let error):
-                                                debugPrint("[SplashViewController fetchProfile] Avatar loading failed\n \(error)")
-                                                                   }
-                                                               }
-    
-                   self.switchToTabBarController()
-                    UIBlockingProgressHUD.dismiss()
-                case .failure(let error):
-                          debugPrint("[SplashViewController fetchProfile] Profile loading failed\n \(error)")
+    private func fetchProfile(_ token: String) {
+        UIBlockingProgressHUD.show()
+        profileService.fetchProfile { result in
+            switch result {
+            case .success(let profileResult):
+                debugPrint("[SplashViewController fetchProfile] Start loading Avatar")
+                ProfileImageService.shared.fetchProfileImageURL(username: profileResult.username) { result in
+                    switch result {
+                    case .success(let avatarResult):
+                        debugPrint("[SplashViewController fetchProfile] Avatar loaded")
+                    case .failure(let error):
+                        debugPrint("[SplashViewController fetchProfile] Avatar loading failed\n \(error)")
+                    }
                 }
+                
+                self.switchToTabBarController()
+                UIBlockingProgressHUD.dismiss()
+            case .failure(let error):
+                debugPrint("[SplashViewController fetchProfile] Profile loading failed\n \(error)")
             }
-            UIBlockingProgressHUD.dismiss()
         }
+        UIBlockingProgressHUD.dismiss()
     }
+}
 

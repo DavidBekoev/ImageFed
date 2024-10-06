@@ -35,13 +35,13 @@ final class ProfileImageService{
             guard let self else { return }
             switch result {
             case .success(let body):
-                self.avatarURL = body.profileImage.large
-                handler(.success(body.profileImage.large))
+                self.avatarURL = body.profile_image.large
+                handler(.success(body.profile_image.large))
                 NotificationCenter.default
                     .post(
                         name: ProfileImageService.didChangeNotification,
                         object: self,
-                        userInfo: ["URL": body.profileImage])
+                        userInfo: ["URL":body.profile_image])
                 
             case .failure(let error):
                 debugPrint("[ProfileImageService fetchProfileImageURL] Invalid request/n \(error)")
@@ -55,7 +55,7 @@ final class ProfileImageService{
     
     
     func getProfileRequest(username: String) -> URLRequest? {
-        guard let url = URL(string: "\(Constants.Profile.usersURLString)\(username)") else {
+        guard let url = URL(string: Constants.Profile.profileURLString) else {
             preconditionFailure("Unable to construct profile request")
         }
         var request = URLRequest(url: url)

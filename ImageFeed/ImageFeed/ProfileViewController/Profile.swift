@@ -17,7 +17,7 @@ struct Profile {
 }
 
 struct UserResult: Codable {
-    let profileImage: AvatarUrls
+    let profile_image: AvatarUrls
 }
 
 struct AvatarUrls: Codable {

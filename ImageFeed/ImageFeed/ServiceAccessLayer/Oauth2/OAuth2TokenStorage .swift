@@ -13,14 +13,10 @@ final class OAuth2TokenStorage {
     static let shared = OAuth2TokenStorage()
     init() {}
     
- //   private let storage = UserDefaults.standard
- //   private enum StorageKeys: String {
- //       case token
- //   }
-
+    
     var token: String? {
         get {
-             KeychainWrapper.standard.string(forKey: Constants.Token.storageKey)
+            KeychainWrapper.standard.string(forKey: Constants.Token.storageKey)
         }
         set {
             if let newValue {

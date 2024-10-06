@@ -26,6 +26,7 @@ final class ProfileViewController: UIViewController {
                                                         color: UIColor.white)
     
     private var profileImageServiceObserver: NSObjectProtocol?
+    private var profileServiceObserver: NSObjectProtocol?
     @IBAction private func didTapLogoutButton() {
     }
     let ProfileViewController = TabBarController.self
@@ -39,6 +40,7 @@ final class ProfileViewController: UIViewController {
         view.backgroundColor = .color1
         
         updateProfileDetails(profile: profileService.profile ?? Profile(username: "", name: "", bio: ""))
+        updateAvatar()
         
         
         profileImageServiceObserver = NotificationCenter.default
@@ -50,7 +52,7 @@ final class ProfileViewController: UIViewController {
                 guard let self = self else { return }
                 self.updateAvatar()
             }
-        updateAvatar()
+        
         
         
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +86,6 @@ final class ProfileViewController: UIViewController {
         ])
         
     }
-    
     
     func updateProfileDetails(profile: Profile) {
         nameLabel.text = profile.name

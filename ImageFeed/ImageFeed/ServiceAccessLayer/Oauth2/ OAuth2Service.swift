@@ -15,7 +15,7 @@ final class OAuth2Service {
     
     static let shared = OAuth2Service()
     private let urlSession = URLSession.shared
-    private var task: URLSessionTask?                       
+    private var task: URLSessionTask?
     private var lastCode: String?
     private init() {}
     
@@ -65,7 +65,7 @@ final class OAuth2Service {
             guard let self else { return }
             switch result {
             case .success(let body):
-                           completion(.success(body.accessToken))
+                completion(.success(body.accessToken))
             case .failure(let error):
                 debugPrint("[OAuth2Service fetchOAuthToken] Invalid request/n \(error)")
                 completion(.failure(error))
