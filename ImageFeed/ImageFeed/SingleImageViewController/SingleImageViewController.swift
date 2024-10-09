@@ -12,10 +12,7 @@ final class SingleImageViewController: UIViewController {
   
     var image: UIImage? {
         didSet {
-            guard isViewLoaded, let image else {
-                debugPrint("[SingleImageViewController viewDidLoad] image is nil")
-                return
-            }
+            guard isViewLoaded, let image else { return }
             
             imageView.image = image
             imageView.frame.size = image.size
