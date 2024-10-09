@@ -51,7 +51,6 @@ extension AuthViewController: WebViewViewControllerDelegate {
         OAuth2Service.shared.fetchOAuthToken(code) { [weak self] result in
           
             guard let self = self else { return }
-            ProgressHUD.dismiss()
             switch result {
             case .success(let token):
                 OAuth2TokenStorage.shared.token = token
