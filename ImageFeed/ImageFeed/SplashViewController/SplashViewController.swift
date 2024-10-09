@@ -120,7 +120,7 @@ extension SplashViewController: AuthViewControllerDelegate {
                 debugPrint("[SplashViewController fetchProfile] Start loading Avatar")
                 ProfileImageService.shared.fetchProfileImageURL(username: profileResult.username) { result in
                     switch result {
-                    case .success(let avatarResult):
+                    case .success(_):
                         debugPrint("[SplashViewController fetchProfile] Avatar loaded")
                     case .failure(let error):
                         debugPrint("[SplashViewController fetchProfile] Avatar loading failed\n \(error)")

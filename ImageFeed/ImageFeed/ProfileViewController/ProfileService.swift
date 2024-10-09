@@ -68,7 +68,7 @@ final class ProfileService {
     private func convert(profileResult: ProfileResult) -> Profile {
         return Profile(
             username: profileResult.username,
-            name: "\(profileResult.first_name) \(profileResult.last_name)",
+            name: "\(profileResult.first_name ?? "") \(profileResult.last_name ?? "")",
             bio: profileResult.bio)
     }
 }
@@ -77,8 +77,8 @@ final class ProfileService {
 
 struct ProfileResult: Codable {
     let username: String
-    let first_name: String
-    let last_name: String
+    let first_name: String?
+    let last_name: String?
     let bio: String?
     
     
