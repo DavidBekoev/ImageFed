@@ -95,6 +95,11 @@ final class ImagesListService {
         return photosResult
     }
     
+    func cleanImages() {
+           photos.removeAll()
+           lastLoadedPage = 0
+       }
+    
     private func dateFormat(date: String) -> Date {
         
         let dateFormatter = DateFormatter()
@@ -154,6 +159,7 @@ final class ImagesListService {
         else { request.httpMethod = "DELETE" }
         return request
     }
+    
 }
 
 

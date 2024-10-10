@@ -30,9 +30,9 @@ final class ProfileViewController: UIViewController {
     @IBAction private func didTapLogoutButton() {
     }
     let ProfileViewController = TabBarController.self
-    
     private var label: UILabel?
     private let profileService = ProfileService.shared
+    private let profileLogoutService = ProfileLogoutService.shared
     
     
     override func viewDidLoad() {
@@ -62,6 +62,7 @@ final class ProfileViewController: UIViewController {
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         let imageButton = UIImage(named: "Logout")
         logoutButton.setImage(imageButton, for: .normal)
+        logoutButton.addTarget(self, action: #selector(tapLogoutButton), for: UIControl.Event.touchUpInside)
         
         addAllSubviews()
         
@@ -129,6 +130,16 @@ final class ProfileViewController: UIViewController {
         view.addSubview(descriptionLabel)
         view.addSubview(logoutButton)
     }
+    
+    @objc private func tapLogoutButton() {
+           profileLogoutService.logout()
+           guard let window = UIApplication.shared.windows.first else {
+               assertionFailure("Invalid window configuration")
+               return
+           }
+           window.rootViewController = SplashViewController()
+           window.makeKeyAndVisible()
+       }
     
     @objc
     private func didTapButton() {

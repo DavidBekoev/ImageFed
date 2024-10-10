@@ -72,6 +72,9 @@ final class ProfileService {
             name: "\(profileResult.first_name ?? "") \(profileResult.last_name ?? "")",
             bio: profileResult.bio)
     }
+    func cleanProfile() {
+           profile = nil
+       }
 }
 
 
