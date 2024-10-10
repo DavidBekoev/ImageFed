@@ -8,7 +8,7 @@
 import UIKit
 
 class ImagesListViewController: UIViewController {
-   
+    
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
     @IBOutlet private var tableView: UITableView!
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
@@ -19,42 +19,44 @@ class ImagesListViewController: UIViewController {
         formatter.timeStyle = .none
         return formatter
     }() 
-     
-  
     
     
-  
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
-      
+        
         tableView.rowHeight = 200
         tableView.backgroundColor = .black
         
-       
+        
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-          if segue.identifier == showSingleImageSegueIdentifier {
-              guard
-                  let viewController = segue.destination as? SingleImageViewController,
-                  let indexPath = sender as? IndexPath
-              else {
-                  assertionFailure("Invalid segue destination")
-                  return
-              }
-
-              let image = UIImage(named: photosName[indexPath.row])
-              viewController.image = image
-          } else {
-              super.prepare(for: segue, sender: sender)
-          }
-      }
-  }
-
+        if segue.identifier == showSingleImageSegueIdentifier {
+            guard
+                let viewController = segue.destination as? SingleImageViewController,
+                let indexPath = sender as? IndexPath
+            else {
+                assertionFailure("Invalid segue destination")
+                return
+            }
+            
+            let image = UIImage(named: photosName[indexPath.row])
+            viewController.image = image
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    }
+}
 
 
 extension ImagesListViewController: UITableViewDataSource {

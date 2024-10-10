@@ -46,6 +46,7 @@ final class ProfileService {
                 debugPrint("[ProfileService fetchProfile] Invalid request/n \(error)")
                 handler(.failure(error))
             }
+            self.task = nil
         }
         self.task = task
         task.resume()
@@ -75,11 +76,4 @@ final class ProfileService {
 
 
 
-struct ProfileResult: Codable {
-    let username: String
-    let first_name: String?
-    let last_name: String?
-    let bio: String?
-    
-    
-}
+

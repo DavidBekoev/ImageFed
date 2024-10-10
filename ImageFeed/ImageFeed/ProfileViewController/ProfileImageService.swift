@@ -47,6 +47,7 @@ final class ProfileImageService{
                 debugPrint("[ProfileImageService fetchProfileImageURL] Invalid request/n \(error)")
                 handler(.failure(error))
             }
+            self.task = nil
         }
         self.task = task
         task.resume()

@@ -25,3 +25,12 @@ struct AvatarUrls: Codable {
     let medium: String
     let large: String
 }
+
+struct ProfileResult: Codable {
+    let username: String
+    let first_name: String?
+    let last_name: String?
+    let bio: String?
+    
+    
+}
