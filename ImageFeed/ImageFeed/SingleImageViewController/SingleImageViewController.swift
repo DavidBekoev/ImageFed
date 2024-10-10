@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Kingfisher
+
 final class SingleImageViewController: UIViewController {
     @IBOutlet  var imageView: UIImageView!
     @IBOutlet private var scrollView: UIScrollView!
-  
+    var fullImageURLString: String?
     var image: UIImage? {
         didSet {
             guard isViewLoaded, let image else {
@@ -25,13 +27,9 @@ final class SingleImageViewController: UIViewController {
         
         override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.minimumZoomScale = 0.1
-        scrollView.maximumZoomScale = 1.25
-
-        guard let image else { return }
-        imageView.image = image
-        imageView.frame.size = image.size
-        rescaleAndCenterImageInScrollView(image: image)
+       
+          loadImage()
+          setScales()
     }
     
     
@@ -49,6 +47,7 @@ final class SingleImageViewController: UIViewController {
     }
     
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
+        setScales()
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale
         view.layoutIfNeeded()
@@ -64,6 +63,46 @@ final class SingleImageViewController: UIViewController {
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
     }
+    private func setScales() {
+          scrollView.minimumZoomScale = 0.1
+          scrollView.maximumZoomScale = 1.25
+      }
+
+      private func loadImage() {
+          UIBlockingProgressHUD.show()
+          guard let fullImageURLString = fullImageURLString,
+                let fullImageURL = URL(string: fullImageURLString)
+          else {
+              debugPrint("[SingleImageViewController viewDidLoad] image is nil")
+              return
+          }
+          imageView.kf.setImage(with: fullImageURL) { [weak self] result in
+              UIBlockingProgressHUD.dismiss()
+              guard let self = self else { return }
+              switch result {
+              case .success(let imageResult):
+                  self.image = imageResult.image
+              case .failure:
+                  UIBlockingProgressHUD.dismiss()
+                  self.showError()
+              }
+          }
+      }
+
+      private func showError() {
+          let alert = UIAlertController(title: "Что-то пошло не так",
+                                        message: "Попробовать ещё раз?",
+                                        preferredStyle: .alert)
+          let action = UIAlertAction(title: "Не надо", style: .default) { _ in
+              alert.dismiss(animated: true)
+          }
+          let reload = UIAlertAction(title: "Повторить", style: .default) { [self] _ in
+              self.loadImage()
+          }
+          alert.addAction(action)
+          alert.addAction(reload)
+          self.present(alert, animated: true, completion: nil)
+      }
 }
 
 extension SingleImageViewController: UIScrollViewDelegate {

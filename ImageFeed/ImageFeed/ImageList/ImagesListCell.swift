@@ -40,23 +40,23 @@ final class ImagesListCell: UITableViewCell {
         
         setIsLiked(isLike: isLiked)
     }
-//    func setIsLiked(isLike: Bool) {
-//        if isLike {
-//            let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
-//            likeButton.setImage(likeImage, for: .normal)
-//        }
-//    }
+    //    func setIsLiked(isLike: Bool) {
+    //        if isLike {
+    //            let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
+    //            likeButton.setImage(likeImage, for: .normal)
+    //        }
+    //    }
     func setIsLiked(isLike: Bool) {
-           if isLike {
-               guard let likeOn = UIImage(named: "like_button_on") else { return }
-               likeButton.imageView?.image = likeOn
-           } else {
-               guard let likeOff = UIImage(named: "like_button_off") else { return }
-               likeButton.imageView?.image = likeOff
-           }
-       }
+        if isLike {
+            guard let likeOn = UIImage(named: "like_button_on") else { return }
+            likeButton.imageView?.image = likeOn
+        } else {
+            guard let likeOff = UIImage(named: "like_button_off") else { return }
+            likeButton.imageView?.image = likeOff
+        }
+    }
     
     @IBAction func tapLikeButton() {
-          delegate?.imageListCellDidTapLike(self)
-      }
+        delegate?.imageListCellDidTapLike(self)
+    }
 }
