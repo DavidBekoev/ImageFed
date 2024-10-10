@@ -10,7 +10,7 @@ import Foundation
 struct Photo {
     let id: String
     let size: CGSize
-    let createdAt: Date?
+    let created_at: Date?
     let welcomeDescription: String?
     let thumbImageURL: String
     let largeImageURL: String
@@ -19,10 +19,10 @@ struct Photo {
 
 struct PhotoResult: Codable {
     let id: String
-    let createdAt: String
+    let created_at: String
     let description: String?
-    let altDescription: String?
-    let likedByUser: Bool
+    let alt_description: String?
+    let liked_by_user: Bool
     let width: Int
     let height: Int
     let urls: UrlsResult

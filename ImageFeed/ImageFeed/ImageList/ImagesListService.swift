@@ -82,11 +82,11 @@ final class ImagesListService {
                        Photo(
                            id: photo.id,
                            size: CGSize(width: photo.width, height: photo.height),
-                           createdAt: dateFormat(date: photo.createdAt),
-                           welcomeDescription: photo.altDescription,
-                           thumbImageURL: photo.urls.thumb,
+                           created_at: dateFormat(date: photo.created_at),
+                           welcomeDescription: photo.alt_description,
+                           thumbImageURL: photo.urls.small,
                            largeImageURL: photo.urls.full,
-                           isLiked: photo.likedByUser
+                           isLiked: photo.liked_by_user
                        )
                    )
 
@@ -94,7 +94,7 @@ final class ImagesListService {
                return photosResult
            }
 
-           private func dateFormat(date: String) -> Date {
+    private func dateFormat(date: String) -> Date {
     
                let dateFormatter = DateFormatter()
                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
