@@ -8,6 +8,9 @@
 import UIKit
 import Kingfisher
 class ImagesListViewController: UIViewController {
+  
+    
+    
     
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
     @IBOutlet private var tableView: UITableView!
@@ -51,7 +54,7 @@ class ImagesListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        UIBlockingProgressHUD.show()
+      //  UIBlockingProgressHUD.show()
         if segue.identifier == showSingleImageSegueIdentifier {
             guard
                 let viewController = segue.destination as? SingleImageViewController,
@@ -73,7 +76,7 @@ class ImagesListViewController: UIViewController {
         } else {
             super.prepare(for: segue, sender: sender)
         }
-        UIBlockingProgressHUD.dismiss()
+   //     UIBlockingProgressHUD.dismiss()
     }
     
     func updateTableViewAnimated() {
@@ -96,7 +99,7 @@ class ImagesListViewController: UIViewController {
                case .success(let body):
                    debugPrint("[ImagesListViewController fetchNextPhotos] Next pack of images loaded")
                             case .failure(let error):
-                                debugPrint("[ImagesListViewController fetchNextPhotos] Avatar loading failed\n \(error)")
+                   debugPrint("[ImagesListViewController fetchNextPhotos] Next pack of images loading failed\n \(error)")
                             }
                         }
                     }
@@ -123,11 +126,50 @@ extension ImagesListViewController: UITableViewDataSource {
         //configCell(for: imageListCell, with: indexPath)
        // configCell(for: imageListCell, with: indexPath, url: url)
         //imageListCell.configCell(with: indexPath)
-        imageListCell.configCell(tableView, with: indexPath, url: url)
-
+     //   imageListCell.configCell(tableView, with: indexPath, url: url)
+    
+           imageListCell.delegate = self
+           let isLiked = self.photos[indexPath.row].isLiked
+           imageListCell.configCell(tableView, with: indexPath, url: url, isLiked: isLiked)
         return imageListCell
     }
 }
+
+extension ImagesListViewController: ImagesListCellDelegate {
+    func imageListCellDidTapLike(_ cell: ImagesListCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let photo = photos[indexPath.row]
+        UIBlockingProgressHUD.show()
+        imagesListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { result in
+            switch result {
+            case .success(let body):
+                debugPrint("[ImagesListViewController imageListCellDidTapLike] Like/unlike request done")
+                DispatchQueue.main.async {
+                    if let index = self.photos.firstIndex(where: { $0.id == body.photo.id }) {
+                        let photo = self.photos[index]
+                        let newPhoto = Photo(
+                            id: photo.id,
+                            size: photo.size,
+                            created_at: photo.created_at,
+                            welcomeDescription: photo.welcomeDescription,
+                            thumbImageURL: photo.thumbImageURL,
+                            largeImageURL: photo.largeImageURL,
+                            isLiked: !photo.isLiked
+                        )
+                        self.photos[index] = newPhoto
+                        cell.setIsLiked(isLike: !photo.isLiked)
+                        UIBlockingProgressHUD.dismiss()
+                    }
+                }
+            case .failure(let error):
+                debugPrint("[ImagesListViewController imageListCellDidTapLike] Like/unlike request failed\n \(error)")
+                UIBlockingProgressHUD.dismiss()
+            }
+          }
+
+      }
+
+  }
 
 //extension ImagesListViewController {
 

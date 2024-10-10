@@ -36,6 +36,7 @@
 		EAA980B62C372BA40095CE78 /* ImageFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA980B52C372BA40095CE78 /* ImageFeedTests.swift */; };
 		EAA980C02C372BA40095CE78 /* ImageFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA980BF2C372BA40095CE78 /* ImageFeedUITests.swift */; };
 		EAA980C22C372BA40095CE78 /* ImageFeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA980C12C372BA40095CE78 /* ImageFeedUITestsLaunchTests.swift */; };
+		EAE280BA2CB85EBB00E9A6DC /*  ImagesListCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280B92CB85EB800E9A6DC /*  ImagesListCellDelegate.swift */; };
 		EAEAB9342C4324770014F1B8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */; };
 		EAFBDE952CA4875F004BB407 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EAFBDE942CA4875F004BB407 /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,7 @@
 		EAA980BB2C372BA40095CE78 /* ImageFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA980BF2C372BA40095CE78 /* ImageFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedUITests.swift; sourceTree = "<group>"; };
 		EAA980C12C372BA40095CE78 /* ImageFeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EAE280B92CB85EB800E9A6DC /*  ImagesListCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ImagesListCellDelegate.swift"; sourceTree = "<group>"; };
 		EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +169,7 @@
 		EA7C03842C714FEA000370EB /* ImageList */ = {
 			isa = PBXGroup;
 			children = (
+				EAE280B92CB85EB800E9A6DC /*  ImagesListCellDelegate.swift */,
 				EA9675D12CB6EC3600C845D0 /* Photo.swift */,
 				EA9675CF2CB6DEF500C845D0 /* ImagesListService.swift */,
 				EAA980A22C372BA30095CE78 /* ImagesListViewController.swift */,
@@ -417,6 +420,7 @@
 				EA05EA252CA7244300815C2F /*  TabBarController.swift in Sources */,
 				EA1E21F82C484845007C1B81 /* SingleImageViewController.swift in Sources */,
 				EA8B109C2C99FA41008D9693 /* ProfileImageService.swift in Sources */,
+				EAE280BA2CB85EBB00E9A6DC /*  ImagesListCellDelegate.swift in Sources */,
 				EA2FDA062C69467C000A0F62 /* WebViewViewControllerDelegate.swift in Sources */,
 				EA2FD9FA2C63E638000A0F62 /* URLSession+data.swift in Sources */,
 				EA2FDA002C64E36B000A0F62 /* OAuth2TokenStorage .swift in Sources */,

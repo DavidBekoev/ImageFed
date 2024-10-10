@@ -14,6 +14,7 @@ final class ImagesListService {
     static let didChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     private let oAuth2Storage = OAuth2TokenStorage.shared
     private var task: URLSessionTask?
+    private var likeTask: URLSessionTask?
     private init() {}
    
     
@@ -64,7 +65,7 @@ final class ImagesListService {
                ]
                guard let url = urlComponents.url
                else {
-                   debugPrint("[ImagesListService getTokenURLRequest] url is nil")
+                   debugPrint("[ImagesListService getPhotosRequest] url is nil")
                    return nil
                }
                var request = URLRequest(url: url)
@@ -101,6 +102,58 @@ final class ImagesListService {
                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
                return dateFormatter.date(from:date) ?? Date()
            }
+    
+    func changeLike(photoId: String, isLike: Bool, _ handler: @escaping (Result<LikeResult, Error>) -> Void) {
+           assert(Thread.isMainThread)
+           if likeTask != nil {
+               return
+           }
+
+           guard let request = getLikeRequest(isLike: isLike, photoId: photoId)
+           else {
+               debugPrint("[ImagesListService changeLike] Invalid request")
+               handler(.failure(AuthServiceError.invalidRequest))
+               return
+           }
+
+           let likeTask = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<LikeResult, Error>) in
+               guard let self else { return }
+               switch result {
+               case .success(let body):
+                   handler(.success(body))
+               case .failure(let error):
+                   debugPrint("[ImagesListService changeLike] Invalid request/n \(error)")
+                   handler(.failure(error))
+               }
+               self.likeTask = nil
+           }
+           self.likeTask = likeTask
+           likeTask.resume()
+       }
+    
+    func getLikeRequest(isLike: Bool, photoId: String) -> URLRequest? {
+           guard var urlComponents = URLComponents(string: "\(Constants.Photos.photosURLString)/\(photoId)/like")
+           else {
+               debugPrint("[ImagesListService getLikeRequest] photosURLString is nil")
+               return nil
+           }
+           urlComponents.queryItems = [
+               URLQueryItem(name: "scope", value: Constants.accessScope)
+           ]
+           guard let url = urlComponents.url
+           else {
+               debugPrint("[ImagesListService getLikeRequest] url is nil")
+               return nil
+           }
+           var request = URLRequest(url: url)
+           guard let token = oAuth2Storage.token else {
+               preconditionFailure("Token is nil")
+           }
+           request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+           if isLike { request.httpMethod = "POST" }
+           else { request.httpMethod = "DELETE" }
+           return request
+       }
        }
 
 
