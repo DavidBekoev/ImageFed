@@ -18,17 +18,7 @@ class ImagesListViewController: UIViewController {
     private let imagesListService = ImagesListService.shared
     private var imagesListServiceObserver: NSObjectProtocol?
     
-    //    private lazy var dateFormatter: DateFormatter = {
-    //        let formatter = DateFormatter()
-    //        formatter.dateStyle = .long
-    //        formatter.timeStyle = .none
-    //        return formatter
-    //    }() 
-    
-    
-    
-    
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -106,8 +96,9 @@ extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
-        guard let imageListCell = cell as? ImagesListCell,
-              let url: URL = URL(string: photos[indexPath.row].thumbImageURL)
+     //   guard let imageListCell = cell as? ImagesListCell,
+      //        let url: URL = URL(string: photos[indexPath.row].thumbImageURL)
+        guard let imageListCell = cell as? ImagesListCell
         else {
             return UITableViewCell()
         }
@@ -118,8 +109,7 @@ extension ImagesListViewController: UITableViewDataSource {
         //   imageListCell.configCell(tableView, with: indexPath, url: url)
         
         imageListCell.delegate = self
-        let isLiked = self.photos[indexPath.row].isLiked
-        imageListCell.configCell(tableView, with: indexPath, url: url, isLiked: isLiked)
+        imageListCell.configCell(tableView, photo: photos[indexPath.row])
         return imageListCell
     }
 }

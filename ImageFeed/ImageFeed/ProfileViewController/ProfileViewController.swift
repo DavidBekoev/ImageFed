@@ -56,8 +56,7 @@ final class ProfileViewController: UIViewController {
         
         
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
-        let imageAvatar = UIImage(named: "Avatar")
-        avatarImage.image = imageAvatar
+
         
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         let imageButton = UIImage(named: "Logout")
@@ -104,12 +103,15 @@ final class ProfileViewController: UIViewController {
         let processor = RoundCornerImageProcessor(cornerRadius: 40)
         avatarImage.backgroundColor = .black
         avatarImage.tintColor = .black
+        avatarImage.kf.indicatorType = IndicatorType.activity
         avatarImage.kf.setImage(with: url,
                                 placeholder: UIImage(named: "placeholder.jpeg"),
                                 options: [
                                     .processor(processor),
                                     .cacheSerializer(FormatIndicatedCacheSerializer.png)
-                                ])
+                                ]) { _ in
+                                    debugPrint("Avatar installed")
+                                }
         
     }
     
@@ -132,10 +134,6 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc private func tapLogoutButton() {
-//           profileLogoutService.logout()
-//           guard let window = UIApplication.shared.windows.first else {
-//               assertionFailure("Invalid window configuration")
-//               return
         let alert = UIAlertController(title: "Пока, пока!",
                                             message: "Уверены что хотите выйти?",
                                             preferredStyle: .alert)
@@ -151,8 +149,6 @@ final class ProfileViewController: UIViewController {
               let no = UIAlertAction(title: "Нет", style: .default) { _ in
                   alert.dismiss(animated: true)
            }
-//           window.rootViewController = SplashViewController()
-//           window.makeKeyAndVisible()
         alert.addAction(yes)
               alert.addAction(no)
               self.present(alert, animated: true, completion: nil)
