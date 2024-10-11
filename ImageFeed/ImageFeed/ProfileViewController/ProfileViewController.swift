@@ -132,13 +132,30 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc private func tapLogoutButton() {
-           profileLogoutService.logout()
-           guard let window = UIApplication.shared.windows.first else {
-               assertionFailure("Invalid window configuration")
-               return
+//           profileLogoutService.logout()
+//           guard let window = UIApplication.shared.windows.first else {
+//               assertionFailure("Invalid window configuration")
+//               return
+        let alert = UIAlertController(title: "Пока, пока!",
+                                            message: "Уверены что хотите выйти?",
+                                            preferredStyle: .alert)
+              let yes = UIAlertAction(title: "Да", style: .default) { [self] _ in
+                  self.profileLogoutService.logout()
+                  guard let window = UIApplication.shared.windows.first else {
+                      assertionFailure("Invalid window configuration")
+                      return
+                  }
+                  window.rootViewController = SplashViewController()
+                  window.makeKeyAndVisible()
+              }
+              let no = UIAlertAction(title: "Нет", style: .default) { _ in
+                  alert.dismiss(animated: true)
            }
-           window.rootViewController = SplashViewController()
-           window.makeKeyAndVisible()
+//           window.rootViewController = SplashViewController()
+//           window.makeKeyAndVisible()
+        alert.addAction(yes)
+              alert.addAction(no)
+              self.present(alert, animated: true, completion: nil)
        }
     
     @objc

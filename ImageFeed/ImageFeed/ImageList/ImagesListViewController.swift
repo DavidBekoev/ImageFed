@@ -31,25 +31,9 @@ class ImagesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
-        
-        tableView.rowHeight = 200
-        tableView.backgroundColor = .black
-        
-        imagesListServiceObserver = NotificationCenter.default
-            .addObserver(
-                forName: ImagesListService.didChangeNotification,
-                object: nil,
-                queue: .main
-            ) { [weak self] _ in
-                guard let self = self else { return }
-                self.updateTableViewAnimated()
-            }
+        setupLayout()
+        setupNotifications()
         fetchNextPhotos()
-        
-        
         
     }
     
@@ -95,7 +79,21 @@ class ImagesListViewController: UIViewController {
         }
     }
     
-    
+    private func setupLayout() {
+          tableView.rowHeight = 200
+          tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+      }
+
+      private func setupNotifications() {
+          imagesListServiceObserver = NotificationCenter.default.addObserver(
+                  forName: ImagesListService.didChangeNotification,
+                  object: nil,
+                  queue: .main
+              ) { [weak self] _ in
+                  guard let self = self else { return }
+                  self.updateTableViewAnimated()
+              }
+      }
     
 }
 
@@ -153,8 +151,10 @@ extension ImagesListViewController: ImagesListCellDelegate {
                     }
                 }
             case .failure(let error):
-                debugPrint("[ImagesListViewController imageListCellDidTapLike] Like/unlike request failed\n \(error)")
-                UIBlockingProgressHUD.dismiss()
+                DispatchQueue.main.async {
+                                  debugPrint("[ImagesListViewController imageListCellDidTapLike] Like/unlike request failed\n \(error)")
+                                  UIBlockingProgressHUD.dismiss()
+                              }
             }
         }
         
