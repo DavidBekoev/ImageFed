@@ -15,10 +15,16 @@ final class ImagesListCell: UITableViewCell {
     @IBOutlet var likeButton: UIButton!
     @IBOutlet var dateLabel: UILabel!
     weak var delegate: ImagesListCellDelegate?
-    private lazy var dateFormatter: ISO8601DateFormatter = {
-          return ISO8601DateFormatter()
-      }()
+//    private lazy var dateFormatter: ISO8601DateFormatter = {
+//          return ISO8601DateFormatter()
+//      }()
     
+    private lazy var dateFormatter: DateFormatter = {
+           let formatter = DateFormatter()
+           formatter.dateStyle = .long
+           formatter.timeStyle = .none
+           return formatter
+       }()
     
     override func prepareForReuse() {
         super.prepareForReuse()

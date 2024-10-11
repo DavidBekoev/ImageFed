@@ -15,6 +15,9 @@ final class ImagesListService {
     private let oAuth2Storage = OAuth2TokenStorage.shared
     private var task: URLSessionTask?
     private var likeTask: URLSessionTask?
+    private lazy var dateFormatter: ISO8601DateFormatter = {
+            return ISO8601DateFormatter()
+        }()
     private init() {}
     
     
@@ -83,7 +86,7 @@ final class ImagesListService {
                 Photo(
                     id: photo.id,
                     size: CGSize(width: photo.width, height: photo.height),
-                    created_at: dateFormat(date: photo.created_at),
+                    created_at: dateFormatter.date(from: photo.created_at),
                     welcomeDescription: photo.alt_description,
                     thumbImageURL: photo.urls.small,
                     largeImageURL: photo.urls.full,
@@ -100,13 +103,7 @@ final class ImagesListService {
            lastLoadedPage = 0
        }
     
-    private func dateFormat(date: String) -> Date {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return dateFormatter.date(from:date) ?? Date()
-    }
+
     
     func changeLike(photoId: String, isLike: Bool, _ handler: @escaping (Result<LikeResult, Error>) -> Void) {
         assert(Thread.isMainThread)
