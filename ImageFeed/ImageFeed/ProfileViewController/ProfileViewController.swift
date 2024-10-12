@@ -52,12 +52,9 @@ final class ProfileViewController: UIViewController {
                 guard let self = self else { return }
                 self.updateAvatar()
             }
-        
-        
-        
+
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
 
-        
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         let imageButton = UIImage(named: "Logout")
         logoutButton.setImage(imageButton, for: .normal)
@@ -137,7 +134,7 @@ final class ProfileViewController: UIViewController {
         let alert = UIAlertController(title: "Пока, пока!",
                                             message: "Уверены что хотите выйти?",
                                             preferredStyle: .alert)
-              let yes = UIAlertAction(title: "Да", style: .default) { [self] _ in
+        let yes = UIAlertAction(title: "Да", style: .default) { [weak self] _ in          guard let self = self else { return }
                   self.profileLogoutService.logout()
                   guard let window = UIApplication.shared.windows.first else {
                       assertionFailure("Invalid window configuration")

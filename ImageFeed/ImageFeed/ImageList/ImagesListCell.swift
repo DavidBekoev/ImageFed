@@ -11,14 +11,10 @@ import Kingfisher
 
 final class ImagesListCell: UITableViewCell {
     static let reuseIdentifier = "ImagesListCell"
-    @IBOutlet var cellImage: UIImageView!
-    @IBOutlet var likeButton: UIButton!
-    @IBOutlet var dateLabel: UILabel!
-    weak var delegate: ImagesListCellDelegate?
-//    private lazy var dateFormatter: ISO8601DateFormatter = {
-//          return ISO8601DateFormatter()
-//      }()
-    
+     @IBOutlet private var cellImage: UIImageView!
+     @IBOutlet private var likeButton: UIButton!
+     @IBOutlet private var dateLabel: UILabel!
+    weak var delegate: ImagesListCellDelegate?    
     private lazy var dateFormatter: DateFormatter = {
            let formatter = DateFormatter()
            formatter.dateStyle = .long
@@ -59,7 +55,7 @@ final class ImagesListCell: UITableViewCell {
         }
     }
     
-    @IBAction func tapLikeButton() {
+    @IBAction private func tapLikeButton() {
         delegate?.imageListCellDidTapLike(self)
     }
 }

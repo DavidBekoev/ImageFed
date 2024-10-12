@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 final class SingleImageViewController: UIViewController {
-    @IBOutlet  var imageView: UIImageView!
+    @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var scrollView: UIScrollView!
     var fullImageURLString: String?
     var image: UIImage? {
@@ -96,7 +96,8 @@ final class SingleImageViewController: UIViewController {
           let action = UIAlertAction(title: "Не надо", style: .default) { _ in
               alert.dismiss(animated: true)
           }
-          let reload = UIAlertAction(title: "Повторить", style: .default) { [self] _ in
+          let reload = UIAlertAction(title: "Повторить", style: .default) { [weak self] _ in
+              guard let self = self else { return }
               self.loadImage()
           }
           alert.addAction(action)

@@ -45,12 +45,8 @@ final class SplashViewController: UIViewController {
         if let token = oAuth2Storage.token {
             debugPrint(token)
             fetchProfile(token)
-         //   switchToTabBarController()
         } else {
-            
             checkAuthenticationStatus()
-          
-         
         }
     }
     
@@ -106,7 +102,6 @@ extension SplashViewController: AuthViewControllerDelegate {
             return
         }
         fetchProfile(token)
-     //   switchToTabBarController()
         UIBlockingProgressHUD.dismiss()
     }
     
@@ -137,7 +132,8 @@ extension SplashViewController: AuthViewControllerDelegate {
                                let action = UIAlertAction(title: "Не надо", style: .default) { _ in
                                    alert.dismiss(animated: true)
                                }
-                               let reload = UIAlertAction(title: "Повторить", style: .default) { [self] _ in
+                               let reload = UIAlertAction(title: "Повторить", style: .default) { [weak self] _ in
+                                   guard let self = self else { return }
                                    self.fetchProfile(token)
                                }
                                alert.addAction(action)

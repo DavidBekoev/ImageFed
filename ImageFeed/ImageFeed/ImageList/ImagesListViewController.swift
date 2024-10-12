@@ -7,11 +7,7 @@
 
 import UIKit
 import Kingfisher
-class ImagesListViewController: UIViewController {
-    
-    
-    
-    
+ final class ImagesListViewController: UIViewController {
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
     @IBOutlet private var tableView: UITableView!
     private var photos: [Photo] = []
@@ -95,19 +91,10 @@ extension ImagesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
-        
-     //   guard let imageListCell = cell as? ImagesListCell,
-      //        let url: URL = URL(string: photos[indexPath.row].thumbImageURL)
         guard let imageListCell = cell as? ImagesListCell
         else {
             return UITableViewCell()
         }
-        
-        //configCell(for: imageListCell, with: indexPath)
-        // configCell(for: imageListCell, with: indexPath, url: url)
-        //imageListCell.configCell(with: indexPath)
-        //   imageListCell.configCell(tableView, with: indexPath, url: url)
-        
         imageListCell.delegate = self
         imageListCell.configCell(tableView, photo: photos[indexPath.row])
         return imageListCell
@@ -137,15 +124,14 @@ extension ImagesListViewController: ImagesListCellDelegate {
                         )
                         self.photos[index] = newPhoto
                         cell.setIsLiked(isLike: !photo.isLiked)
-                        UIBlockingProgressHUD.dismiss()
                     }
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                                   debugPrint("[ImagesListViewController imageListCellDidTapLike] Like/unlike request failed\n \(error)")
-                                  UIBlockingProgressHUD.dismiss()
                               }
             }
+            UIBlockingProgressHUD.dismiss()
         }
         
     }
