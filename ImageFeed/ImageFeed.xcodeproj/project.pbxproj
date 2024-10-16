@@ -38,6 +38,7 @@
 		EAA980C22C372BA40095CE78 /* ImageFeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA980C12C372BA40095CE78 /* ImageFeedUITestsLaunchTests.swift */; };
 		EAE280BA2CB85EBB00E9A6DC /*  ImagesListCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280B92CB85EB800E9A6DC /*  ImagesListCellDelegate.swift */; };
 		EAE280BC2CB8789E00E9A6DC /* ProfileLogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280BB2CB8789B00E9A6DC /* ProfileLogoutService.swift */; };
+		EAE280BE2CC0374200E9A6DC /* WebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280BD2CC0373E00E9A6DC /* WebViewPresenter.swift */; };
 		EAEAB9342C4324770014F1B8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */; };
 		EAFBDE952CA4875F004BB407 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EAFBDE942CA4875F004BB407 /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -93,6 +94,7 @@
 		EAA980C12C372BA40095CE78 /* ImageFeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EAE280B92CB85EB800E9A6DC /*  ImagesListCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ImagesListCellDelegate.swift"; sourceTree = "<group>"; };
 		EAE280BB2CB8789B00E9A6DC /* ProfileLogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLogoutService.swift; sourceTree = "<group>"; };
+		EAE280BD2CC0373E00E9A6DC /* WebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenter.swift; sourceTree = "<group>"; };
 		EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +155,7 @@
 		EA7C03822C714FA8000370EB /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				EAE280BD2CC0373E00E9A6DC /* WebViewPresenter.swift */,
 				EA2FDA052C69467C000A0F62 /* WebViewViewControllerDelegate.swift */,
 				EA9D94142C56DB0F00CC1C2D /* WebViewViewController.swift */,
 				EA9D94122C56D52C00CC1C2D /* AuthViewController.swift */,
@@ -337,7 +340,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					EAA9809A2C372BA20095CE78 = {
 						CreatedOnToolsVersion = 15.4;
@@ -429,6 +432,7 @@
 				EAE280BC2CB8789E00E9A6DC /* ProfileLogoutService.swift in Sources */,
 				EA2FDA002C64E36B000A0F62 /* OAuth2TokenStorage .swift in Sources */,
 				EA2FDA022C655CEA000A0F62 /* OAuthTokenResponseBody.swift in Sources */,
+				EAE280BE2CC0374200E9A6DC /* WebViewPresenter.swift in Sources */,
 				EA9675D22CB6EC3F00C845D0 /* Photo.swift in Sources */,
 				EA9D94112C55405500CC1C2D /* Constans.swift in Sources */,
 				EA9D94152C56DB0F00CC1C2D /* WebViewViewController.swift in Sources */,
@@ -672,7 +676,6 @@
 		EAA980C92C372BA40095CE78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -692,7 +695,6 @@
 		EAA980CA2C372BA40095CE78 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -712,7 +714,6 @@
 		EAA980CC2C372BA40095CE78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8NKC7JLY7R;
@@ -730,7 +731,6 @@
 		EAA980CD2C372BA40095CE78 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8NKC7JLY7R;
