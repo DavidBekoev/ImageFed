@@ -24,7 +24,7 @@
 		EA9675D02CB6DEFF00C845D0 /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9675CF2CB6DEF500C845D0 /* ImagesListService.swift */; };
 		EA9675D22CB6EC3F00C845D0 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9675D12CB6EC3600C845D0 /* Photo.swift */; };
 		EA993FBF2C3F215400FF4BAC /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA993FBE2C3F215400FF4BAC /* ImagesListCell.swift */; };
-		EA9D94112C55405500CC1C2D /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9D94102C55405500CC1C2D /* Constans.swift */; };
+		EA9D94112C55405500CC1C2D /* AuthConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9D94102C55405500CC1C2D /* AuthConfiguration.swift */; };
 		EA9D94132C56D52C00CC1C2D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9D94122C56D52C00CC1C2D /* AuthViewController.swift */; };
 		EA9D94152C56DB0F00CC1C2D /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9D94142C56DB0F00CC1C2D /* WebViewViewController.swift */; };
 		EAA9809F2C372BA30095CE78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9809E2C372BA30095CE78 /* AppDelegate.swift */; };
@@ -39,6 +39,7 @@
 		EAE280BA2CB85EBB00E9A6DC /*  ImagesListCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280B92CB85EB800E9A6DC /*  ImagesListCellDelegate.swift */; };
 		EAE280BC2CB8789E00E9A6DC /* ProfileLogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280BB2CB8789B00E9A6DC /* ProfileLogoutService.swift */; };
 		EAE280BE2CC0374200E9A6DC /* WebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280BD2CC0373E00E9A6DC /* WebViewPresenter.swift */; };
+		EAE280C22CC0536600E9A6DC /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280C12CC0536300E9A6DC /* AuthHelper.swift */; };
 		EAEAB9342C4324770014F1B8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */; };
 		EAFBDE952CA4875F004BB407 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EAFBDE942CA4875F004BB407 /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -76,7 +77,7 @@
 		EA9675CF2CB6DEF500C845D0 /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
 		EA9675D12CB6EC3600C845D0 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		EA993FBE2C3F215400FF4BAC /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
-		EA9D94102C55405500CC1C2D /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
+		EA9D94102C55405500CC1C2D /* AuthConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConfiguration.swift; sourceTree = "<group>"; };
 		EA9D94122C56D52C00CC1C2D /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		EA9D94142C56DB0F00CC1C2D /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		EAA9809B2C372BA30095CE78 /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +96,7 @@
 		EAE280B92CB85EB800E9A6DC /*  ImagesListCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ImagesListCellDelegate.swift"; sourceTree = "<group>"; };
 		EAE280BB2CB8789B00E9A6DC /* ProfileLogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLogoutService.swift; sourceTree = "<group>"; };
 		EAE280BD2CC0373E00E9A6DC /* WebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenter.swift; sourceTree = "<group>"; };
+		EAE280C12CC0536300E9A6DC /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +157,7 @@
 		EA7C03822C714FA8000370EB /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				EAE280C12CC0536300E9A6DC /* AuthHelper.swift */,
 				EAE280BD2CC0373E00E9A6DC /* WebViewPresenter.swift */,
 				EA2FDA052C69467C000A0F62 /* WebViewViewControllerDelegate.swift */,
 				EA9D94142C56DB0F00CC1C2D /* WebViewViewController.swift */,
@@ -229,7 +232,7 @@
 				EAA9809E2C372BA30095CE78 /* AppDelegate.swift */,
 				EAA980A02C372BA30095CE78 /* SceneDelegate.swift */,
 				EA2FD9F92C63E638000A0F62 /* URLSession+data.swift */,
-				EA9D94102C55405500CC1C2D /* Constans.swift */,
+				EA9D94102C55405500CC1C2D /* AuthConfiguration.swift */,
 				EAB1D9062CA899E300F4D1CD /* TabBarController */,
 				EA716B7B2C8E57DD008244E6 /* UIBlockingProgressHud */,
 				EA7C03832C714FC1000370EB /* SplashViewController */,
@@ -431,10 +434,11 @@
 				EA2FD9FA2C63E638000A0F62 /* URLSession+data.swift in Sources */,
 				EAE280BC2CB8789E00E9A6DC /* ProfileLogoutService.swift in Sources */,
 				EA2FDA002C64E36B000A0F62 /* OAuth2TokenStorage .swift in Sources */,
+				EAE280C22CC0536600E9A6DC /* AuthHelper.swift in Sources */,
 				EA2FDA022C655CEA000A0F62 /* OAuthTokenResponseBody.swift in Sources */,
 				EAE280BE2CC0374200E9A6DC /* WebViewPresenter.swift in Sources */,
 				EA9675D22CB6EC3F00C845D0 /* Photo.swift in Sources */,
-				EA9D94112C55405500CC1C2D /* Constans.swift in Sources */,
+				EA9D94112C55405500CC1C2D /* AuthConfiguration.swift in Sources */,
 				EA9D94152C56DB0F00CC1C2D /* WebViewViewController.swift in Sources */,
 				EAA980A12C372BA30095CE78 /* SceneDelegate.swift in Sources */,
 			);
