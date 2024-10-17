@@ -9,9 +9,15 @@
 import UIKit
 import Kingfisher
 
+public protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfilePresenterProtocol? { get set }
+    func setProfileInfo(name: String?, login: String, bio: String?)
+    func updateAvatar(url: URL?)
+}
 
 
 final class ProfileViewController: UIViewController {
+    var presenter: ProfilePresenterProtocol?
     private let oAuth2Storage = OAuth2TokenStorage.shared
     private let avatarImage: UIImageView = UIImageView()
     private let logoutButton: UIButton = UIButton()
@@ -31,16 +37,13 @@ final class ProfileViewController: UIViewController {
     }
     let ProfileViewController = TabBarController.self
     private var label: UILabel?
-    private let profileService = ProfileService.shared
-    private let profileLogoutService = ProfileLogoutService.shared
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .color1
         
-        updateProfileDetails(profile: profileService.profile ?? Profile(username: "", name: "", bio: ""))
-        updateAvatar()
+        updateAvatar(url: presenter?.avatarURL())
+        presenter?.viewDidLoad()
         
         
         profileImageServiceObserver = NotificationCenter.default
@@ -50,67 +53,41 @@ final class ProfileViewController: UIViewController {
                 queue: .main
             ) { [weak self] _ in
                 guard let self = self else { return }
-                self.updateAvatar()
+                self.updateAvatar(url: presenter?.avatarURL())
             }
-
+        
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
-
+        
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         let imageButton = UIImage(named: "Logout")
         logoutButton.setImage(imageButton, for: .normal)
         logoutButton.addTarget(self, action: #selector(tapLogoutButton), for: UIControl.Event.touchUpInside)
         
         addAllSubviews()
-        
-        NSLayoutConstraint.activate([
-            avatarImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            avatarImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            avatarImage.widthAnchor.constraint(equalToConstant: 70),
-            avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor, multiplier: 1.0),
-            nameLabel.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 8),
-            nameLabel.leadingAnchor.constraint(equalTo: avatarImage.leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            loginNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            loginNameLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            loginNameLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 8),
-            descriptionLabel.leadingAnchor.constraint(equalTo: loginNameLabel.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: loginNameLabel.trailingAnchor),
-            logoutButton.widthAnchor.constraint(equalToConstant: 44),
-            logoutButton.heightAnchor.constraint(equalToConstant: 44),
-            logoutButton.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor),
-            logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-        ])
-        
     }
     
-    func updateProfileDetails(profile: Profile) {
-        nameLabel.text = profile.name
-        loginNameLabel.text = profile.loginName
-        descriptionLabel.text = profile.bio
-    }
-    
-    
-    private func updateAvatar() {
-        guard
-            let profileImageURL = ProfileImageService.shared.avatarURL,
-            let url = URL(string: profileImageURL)
-        else { return }
-        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
-        let processor = RoundCornerImageProcessor(cornerRadius: 40)
-        avatarImage.backgroundColor = .black
-        avatarImage.tintColor = .black
-        avatarImage.kf.indicatorType = IndicatorType.activity
-        avatarImage.kf.setImage(with: url,
-                                placeholder: UIImage(named: "placeholder.jpeg"),
-                                options: [
-                                    .processor(processor),
-                                    .cacheSerializer(FormatIndicatedCacheSerializer.png)
-                                ]) { _ in
-                                    debugPrint("Avatar installed")
-                                }
-        
-    }
+
+private func addConstraints() {
+       NSLayoutConstraint.activate([
+           avatarImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+           avatarImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+           avatarImage.widthAnchor.constraint(equalToConstant: 70),
+           avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor, multiplier: 1.0),
+           nameLabel.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 8),
+           nameLabel.leadingAnchor.constraint(equalTo: avatarImage.leadingAnchor),
+           nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+           loginNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+           loginNameLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+           loginNameLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+           descriptionLabel.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 8),
+           descriptionLabel.leadingAnchor.constraint(equalTo: loginNameLabel.leadingAnchor),
+           descriptionLabel.trailingAnchor.constraint(equalTo: loginNameLabel.trailingAnchor),
+           logoutButton.widthAnchor.constraint(equalToConstant: 44),
+           logoutButton.heightAnchor.constraint(equalToConstant: 44),
+           logoutButton.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor),
+           logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+       ])
+   }
     
     
     private static func configLabel(text: String, font: UIFont, color: UIColor) -> UILabel {
@@ -135,7 +112,7 @@ final class ProfileViewController: UIViewController {
                                             message: "Уверены что хотите выйти?",
                                             preferredStyle: .alert)
         let yes = UIAlertAction(title: "Да", style: .default) { [weak self] _ in          guard let self = self else { return }
-                  self.profileLogoutService.logout()
+            self.presenter?.logout()
                   guard let window = UIApplication.shared.windows.first else {
                       assertionFailure("Invalid window configuration")
                       return
@@ -159,4 +136,31 @@ final class ProfileViewController: UIViewController {
         
     }
     
+}
+
+extension ProfileViewController: ProfileViewControllerProtocol {
+    func setProfileInfo(name: String?, login: String, bio: String?) {
+        nameLabel.text = name
+        loginNameLabel.text = login
+        descriptionLabel.text = bio
+    }
+
+    func updateAvatar(url: URL?) {
+        guard let url else {
+            debugPrint("[ProfileViewController updateAvatar] No avatar url")
+            return
+        }
+        let processor = RoundCornerImageProcessor(cornerRadius: 80)
+        avatarImage.backgroundColor = .color1
+        avatarImage.tintColor = .black
+        avatarImage.kf.indicatorType = IndicatorType.activity
+        avatarImage.kf.setImage(with: url,
+                                placeholder: UIImage(named: "placeholder"),
+                                options: [
+                                    .processor(processor),
+                                    .cacheSerializer(FormatIndicatedCacheSerializer.png)
+                                ]) { _ in
+                                    debugPrint("Avatar installed")
+                                }
+    }
 }

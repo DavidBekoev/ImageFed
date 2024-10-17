@@ -40,6 +40,7 @@
 		EAE280BC2CB8789E00E9A6DC /* ProfileLogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280BB2CB8789B00E9A6DC /* ProfileLogoutService.swift */; };
 		EAE280BE2CC0374200E9A6DC /* WebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280BD2CC0373E00E9A6DC /* WebViewPresenter.swift */; };
 		EAE280C22CC0536600E9A6DC /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280C12CC0536300E9A6DC /* AuthHelper.swift */; };
+		EAE280C42CC18F5900E9A6DC /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280C32CC18F4200E9A6DC /* ProfilePresenter.swift */; };
 		EAEAB9342C4324770014F1B8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */; };
 		EAFBDE952CA4875F004BB407 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EAFBDE942CA4875F004BB407 /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		EAE280BB2CB8789B00E9A6DC /* ProfileLogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLogoutService.swift; sourceTree = "<group>"; };
 		EAE280BD2CC0373E00E9A6DC /* WebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenter.swift; sourceTree = "<group>"; };
 		EAE280C12CC0536300E9A6DC /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
+		EAE280C32CC18F4200E9A6DC /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,11 +191,12 @@
 		EA7C03852C715014000370EB /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EAE280C32CC18F4200E9A6DC /* ProfilePresenter.swift */,
+				EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */,
 				EAE280BB2CB8789B00E9A6DC /* ProfileLogoutService.swift */,
 				EA8B109B2C99FA41008D9693 /* ProfileImageService.swift */,
 				EA716B7C2C90C466008244E6 /* ProfileService.swift */,
 				EA716B7E2C91FD5D008244E6 /* Profile.swift */,
-				EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */,
 			);
 			path = ProfileViewController;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				EA2FDA022C655CEA000A0F62 /* OAuthTokenResponseBody.swift in Sources */,
 				EAE280BE2CC0374200E9A6DC /* WebViewPresenter.swift in Sources */,
 				EA9675D22CB6EC3F00C845D0 /* Photo.swift in Sources */,
+				EAE280C42CC18F5900E9A6DC /* ProfilePresenter.swift in Sources */,
 				EA9D94112C55405500CC1C2D /* AuthConfiguration.swift in Sources */,
 				EA9D94152C56DB0F00CC1C2D /* WebViewViewController.swift in Sources */,
 				EAA980A12C372BA30095CE78 /* SceneDelegate.swift in Sources */,
