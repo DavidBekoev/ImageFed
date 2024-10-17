@@ -19,12 +19,12 @@ final class ProfilePresenter: ProfilePresenterProtocol {
     weak var view: ProfileViewControllerProtocol?
     private let profileService = ProfileService.shared
     private let profileLogoutService = ProfileLogoutService.shared
-
+    
     func viewDidLoad() {
         let profile = profileService.profile ?? Profile(username: "", name: "", bio: "")
         view?.setProfileInfo(name: profile.name, login: profile.username, bio: profile.bio)
     }
-
+    
     func avatarURL() -> URL? {
         guard
             let profileImageURL = ProfileImageService.shared.avatarURL,
@@ -34,7 +34,7 @@ final class ProfilePresenter: ProfilePresenterProtocol {
         }
         return url
     }
-
+    
     func logout() {
         profileLogoutService.logout()
     }

@@ -64,30 +64,31 @@ final class ProfileViewController: UIViewController {
         logoutButton.addTarget(self, action: #selector(tapLogoutButton), for: UIControl.Event.touchUpInside)
         
         addAllSubviews()
+        addConstraints()
     }
     
-
-private func addConstraints() {
-       NSLayoutConstraint.activate([
-           avatarImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-           avatarImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-           avatarImage.widthAnchor.constraint(equalToConstant: 70),
-           avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor, multiplier: 1.0),
-           nameLabel.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 8),
-           nameLabel.leadingAnchor.constraint(equalTo: avatarImage.leadingAnchor),
-           nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-           loginNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-           loginNameLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-           loginNameLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
-           descriptionLabel.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 8),
-           descriptionLabel.leadingAnchor.constraint(equalTo: loginNameLabel.leadingAnchor),
-           descriptionLabel.trailingAnchor.constraint(equalTo: loginNameLabel.trailingAnchor),
-           logoutButton.widthAnchor.constraint(equalToConstant: 44),
-           logoutButton.heightAnchor.constraint(equalToConstant: 44),
-           logoutButton.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor),
-           logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-       ])
-   }
+    private func addConstraints() {
+        NSLayoutConstraint.activate([
+            avatarImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            avatarImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            avatarImage.widthAnchor.constraint(equalToConstant: 70),
+            avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor, multiplier: 1.0),
+            nameLabel.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 8),
+            nameLabel.leadingAnchor.constraint(equalTo: avatarImage.leadingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            loginNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+            loginNameLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            loginNameLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 8),
+            descriptionLabel.leadingAnchor.constraint(equalTo: loginNameLabel.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: loginNameLabel.trailingAnchor),
+            logoutButton.widthAnchor.constraint(equalToConstant: 44),
+            logoutButton.heightAnchor.constraint(equalToConstant: 44),
+            logoutButton.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor),
+            logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+        ])
+        
+    }
     
     
     private static func configLabel(text: String, font: UIFont, color: UIColor) -> UILabel {
@@ -109,24 +110,24 @@ private func addConstraints() {
     
     @objc private func tapLogoutButton() {
         let alert = UIAlertController(title: "Пока, пока!",
-                                            message: "Уверены что хотите выйти?",
-                                            preferredStyle: .alert)
+                                      message: "Уверены что хотите выйти?",
+                                      preferredStyle: .alert)
         let yes = UIAlertAction(title: "Да", style: .default) { [weak self] _ in          guard let self = self else { return }
             self.presenter?.logout()
-                  guard let window = UIApplication.shared.windows.first else {
-                      assertionFailure("Invalid window configuration")
-                      return
-                  }
-                  window.rootViewController = SplashViewController()
-                  window.makeKeyAndVisible()
-              }
-              let no = UIAlertAction(title: "Нет", style: .default) { _ in
-                  alert.dismiss(animated: true)
-           }
+            guard let window = UIApplication.shared.windows.first else {
+                assertionFailure("Invalid window configuration")
+                return
+            }
+            window.rootViewController = SplashViewController()
+            window.makeKeyAndVisible()
+        }
+        let no = UIAlertAction(title: "Нет", style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
         alert.addAction(yes)
-              alert.addAction(no)
-              self.present(alert, animated: true, completion: nil)
-       }
+        alert.addAction(no)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     @objc
     private func didTapButton() {
@@ -144,7 +145,7 @@ extension ProfileViewController: ProfileViewControllerProtocol {
         loginNameLabel.text = login
         descriptionLabel.text = bio
     }
-
+    
     func updateAvatar(url: URL?) {
         guard let url else {
             debugPrint("[ProfileViewController updateAvatar] No avatar url")
