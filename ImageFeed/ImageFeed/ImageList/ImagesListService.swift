@@ -16,8 +16,8 @@ final class ImagesListService {
     private var task: URLSessionTask?
     private var likeTask: URLSessionTask?
     private lazy var dateFormatter: ISO8601DateFormatter = {
-            return ISO8601DateFormatter()
-        }()
+        return ISO8601DateFormatter()
+    }()
     private init() {}
     
     
@@ -99,11 +99,11 @@ final class ImagesListService {
     }
     
     func cleanImages() {
-           photos.removeAll()
-           lastLoadedPage = 0
-       }
+        photos.removeAll()
+        lastLoadedPage = 0
+    }
     
-
+    
     
     func changeLike(photoId: String, isLike: Bool, _ handler: @escaping (Result<LikeResult, Error>) -> Void) {
         assert(Thread.isMainThread)
@@ -155,6 +155,20 @@ final class ImagesListService {
         if isLike { request.httpMethod = "POST" }
         else { request.httpMethod = "DELETE" }
         return request
+    }
+    
+    func changeLikeState(for row: Int) {
+        let photo = photos[row]
+        let newPhoto = Photo(
+            id: photo.id,
+            size: photo.size,
+            created_at: photo.created_at,
+            welcomeDescription: photo.welcomeDescription,
+            thumbImageURL: photo.thumbImageURL,
+            largeImageURL: photo.largeImageURL,
+            isLiked: !photo.isLiked
+        )
+        photos[row] = newPhoto
     }
     
 }

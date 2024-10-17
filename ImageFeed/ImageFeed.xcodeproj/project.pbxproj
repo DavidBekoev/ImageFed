@@ -41,6 +41,7 @@
 		EAE280BE2CC0374200E9A6DC /* WebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280BD2CC0373E00E9A6DC /* WebViewPresenter.swift */; };
 		EAE280C22CC0536600E9A6DC /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280C12CC0536300E9A6DC /* AuthHelper.swift */; };
 		EAE280C42CC18F5900E9A6DC /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280C32CC18F4200E9A6DC /* ProfilePresenter.swift */; };
+		EAE280C62CC1A85400E9A6DC /* ImagesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280C52CC1A83500E9A6DC /* ImagesListPresenter.swift */; };
 		EAEAB9342C4324770014F1B8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */; };
 		EAFBDE952CA4875F004BB407 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EAFBDE942CA4875F004BB407 /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,7 @@
 		EAE280BD2CC0373E00E9A6DC /* WebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewPresenter.swift; sourceTree = "<group>"; };
 		EAE280C12CC0536300E9A6DC /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		EAE280C32CC18F4200E9A6DC /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		EAE280C52CC1A83500E9A6DC /* ImagesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListPresenter.swift; sourceTree = "<group>"; };
 		EAEAB9332C4324770014F1B8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,10 +181,11 @@
 		EA7C03842C714FEA000370EB /* ImageList */ = {
 			isa = PBXGroup;
 			children = (
+				EAE280C52CC1A83500E9A6DC /* ImagesListPresenter.swift */,
+				EAA980A22C372BA30095CE78 /* ImagesListViewController.swift */,
 				EAE280B92CB85EB800E9A6DC /*  ImagesListCellDelegate.swift */,
 				EA9675D12CB6EC3600C845D0 /* Photo.swift */,
 				EA9675CF2CB6DEF500C845D0 /* ImagesListService.swift */,
-				EAA980A22C372BA30095CE78 /* ImagesListViewController.swift */,
 				EA993FBE2C3F215400FF4BAC /* ImagesListCell.swift */,
 			);
 			path = ImageList;
@@ -444,6 +447,7 @@
 				EAE280C42CC18F5900E9A6DC /* ProfilePresenter.swift in Sources */,
 				EA9D94112C55405500CC1C2D /* AuthConfiguration.swift in Sources */,
 				EA9D94152C56DB0F00CC1C2D /* WebViewViewController.swift in Sources */,
+				EAE280C62CC1A85400E9A6DC /* ImagesListPresenter.swift in Sources */,
 				EAA980A12C372BA30095CE78 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
