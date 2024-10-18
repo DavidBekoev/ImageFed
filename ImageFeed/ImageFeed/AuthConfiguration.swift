@@ -45,7 +45,13 @@ struct AuthConfiguration {
     let defaultBaseURL: URL
     let authURLString: String
 
-    init(accessKey: String, secretKey: String, redirectURI: String, accessScope: String, authURLString: String, defaultBaseURL: URL) {
+    init(accessKey: String,
+           secretKey: String,
+           redirectURI: String,
+           accessScope: String,
+           authURLString: String,
+           defaultBaseURL: URL
+      )  {
 
         self.accessKey = accessKey
         self.secretKey = secretKey
@@ -59,11 +65,13 @@ struct AuthConfiguration {
         guard let baseURL = Constants.Auth.defaultBaseURL else {
             preconditionFailure("Wrong base URL")
         }
-        return AuthConfiguration(accessKey: Constants.accessKey,
-                                 secretKey: Constants.secretKey,
-                                 redirectURI: Constants.redirectURI,
-                                 accessScope: Constants.accessScope,
-                                 authURLString: Constants.Auth.authorizeURLString,
-                                 defaultBaseURL: baseURL)
+        return .init(
+                   accessKey: Constants.accessKey,
+                   secretKey: Constants.secretKey,
+                   redirectURI: Constants.redirectURI,
+                   accessScope: Constants.accessScope,
+                   authURLString: Constants.Auth.authorizeURLString,
+                   defaultBaseURL: baseURL
+               )
     }
 }
