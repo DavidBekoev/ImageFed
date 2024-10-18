@@ -21,13 +21,13 @@ final class ProfileViewController: UIViewController {
     private let oAuth2Storage = OAuth2TokenStorage.shared
     private let avatarImage: UIImageView = UIImageView()
     private let logoutButton: UIButton = UIButton()
-    private let nameLabel: UILabel = configLabel(text: "Екатерина Новикова",
+     let nameLabel: UILabel = configLabel(text: "Екатерина Новикова",
                                                  font: UIFont.systemFont(ofSize: 23, weight: .semibold),
                                                  color: UIColor.white)
-    private let loginNameLabel: UILabel = configLabel(text: "@ekaterina_nov",
+     let loginNameLabel: UILabel = configLabel(text: "@ekaterina_nov",
                                                       font: UIFont.systemFont(ofSize: 13),
                                                       color: UIColor.gray)
-    private let descriptionLabel: UILabel = configLabel(text: "Hello, World!",
+     let descriptionLabel: UILabel = configLabel(text: "Hello, World!",
                                                         font: UIFont.systemFont(ofSize: 13),
                                                         color: UIColor.white)
     

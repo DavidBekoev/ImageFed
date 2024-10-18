@@ -68,7 +68,7 @@ final class ProfileService {
     
     private func convert(profileResult: ProfileResult) -> Profile {
         return Profile(
-            username: profileResult.username,
+            username: " @\(profileResult.username)",
             name: "\(profileResult.first_name ?? "") \(profileResult.last_name ?? "")",
             bio: profileResult.bio)
     }
