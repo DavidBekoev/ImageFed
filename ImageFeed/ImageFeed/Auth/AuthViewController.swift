@@ -16,7 +16,7 @@ protocol AuthViewControllerDelegate: AnyObject {
 class AuthViewController: UIViewController {
     weak var delegate: AuthViewControllerDelegate?
     
-    
+    @IBOutlet var loginButton: UIButton!
     // MARK: - Private properties
     private let ShowWebViewSegueIdentifier = "ShowWebView"
     
@@ -47,6 +47,11 @@ class AuthViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem?.tintColor = UIColor(named: "YP Black")
     }
+    private func configureLoginButton() {
+          loginButton.layer.cornerRadius = 16
+          loginButton.layer.masksToBounds = true
+          loginButton.accessibilityIdentifier = "Authenticate"
+      }
 }
 
 extension AuthViewController: WebViewViewControllerDelegate {

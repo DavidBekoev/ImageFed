@@ -43,6 +43,7 @@ final class WebViewViewController: UIViewController & WebViewViewControllerProto
                  guard let self = self else { return }
                  presenter?.didUpdateProgressValue(webView.estimatedProgress)
              })
+        webView.accessibilityIdentifier = "UnsplashWebView"
         
     }
     

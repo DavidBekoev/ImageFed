@@ -43,9 +43,10 @@
                                     <constraint firstAttribute="width" constant="60" id="RcC-m0-1eC"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqq-Og-1Ux">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqq-Og-1Ux" userLabel="Authenticate">
                                 <rect key="frame" x="16" y="680" width="361" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Authenticate"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="ECr-tm-UXh"/>
                                 </constraints>
@@ -76,6 +77,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t0S-oF-JHJ"/>
+                    <connections>
+                        <outlet property="loginButton" destination="Rqq-Og-1Ux" id="b2K-qg-jLy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6cp-ZM-pnJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -240,6 +244,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="P31-ey-MN6"/>
                     <connections>
+                        <outlet property="backwardButton" destination="Q4Z-gZ-bIK" id="F3L-1P-xhX"/>
                         <outlet property="imageView" destination="zhu-NC-2lL" id="LEJ-AK-qJ7"/>
                         <outlet property="scrollView" destination="3A1-i7-Dbm" id="4He-ws-r21"/>
                     </connections>

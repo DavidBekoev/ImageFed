@@ -21,15 +21,22 @@ final class ProfileViewController: UIViewController {
     private let oAuth2Storage = OAuth2TokenStorage.shared
     private let avatarImage: UIImageView = UIImageView()
     private let logoutButton: UIButton = UIButton()
-     let nameLabel: UILabel = configLabel(text: "Екатерина Новикова",
-                                                 font: UIFont.systemFont(ofSize: 23, weight: .semibold),
-                                                 color: UIColor.white)
-     let loginNameLabel: UILabel = configLabel(text: "@ekaterina_nov",
-                                                      font: UIFont.systemFont(ofSize: 13),
-                                                      color: UIColor.gray)
-     let descriptionLabel: UILabel = configLabel(text: "Hello, World!",
-                                                        font: UIFont.systemFont(ofSize: 13),
-                                                        color: UIColor.white)
+//     let nameLabel: UILabel = configLabel(text: "Екатерина Новикова",
+//                                                 font: UIFont.systemFont(ofSize: 23, weight: .semibold),
+//                                                 color: UIColor.white)
+//     let loginNameLabel: UILabel = configLabel(text: "@ekaterina_nov",
+//                                                      font: UIFont.systemFont(ofSize: 13),
+//                                                      color: UIColor.gray)
+//     let descriptionLabel: UILabel = configLabel(text: "Hello, World!",
+//                                                        font: UIFont.systemFont(ofSize: 13),
+//                                                        color: UIColor.white)
+    
+    let nameLabel: UILabel = configLabel(font: UIFont.systemFont(ofSize: 23, weight: .semibold),
+                                            color: .white)
+       let loginNameLabel: UILabel = configLabel(font: UIFont.systemFont(ofSize: 13),
+                                                 color: .gray)
+       let descriptionLabel: UILabel = configLabel(font: UIFont.systemFont(ofSize: 13),
+                                                   color: .white)
     
     private var profileImageServiceObserver: NSObjectProtocol?
     private var profileServiceObserver: NSObjectProtocol?
@@ -62,6 +69,7 @@ final class ProfileViewController: UIViewController {
         let imageButton = UIImage(named: "Logout")
         logoutButton.setImage(imageButton, for: .normal)
         logoutButton.addTarget(self, action: #selector(tapLogoutButton), for: UIControl.Event.touchUpInside)
+        logoutButton.accessibilityIdentifier = "logoutButton"
         
         addAllSubviews()
         addConstraints()
@@ -86,15 +94,16 @@ final class ProfileViewController: UIViewController {
             logoutButton.heightAnchor.constraint(equalToConstant: 44),
             logoutButton.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor),
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+            
         ])
         
     }
     
     
-    private static func configLabel(text: String, font: UIFont, color: UIColor) -> UILabel {
+    private static func configLabel(font: UIFont, color: UIColor) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = text
+  //      label.text = text
         label.font = font
         label.textColor = color
         return label
@@ -126,6 +135,8 @@ final class ProfileViewController: UIViewController {
         }
         alert.addAction(yes)
         alert.addAction(no)
+        yes.accessibilityIdentifier = "yesAlertButton"
+        no.accessibilityIdentifier = "noAlertButton"
         self.present(alert, animated: true, completion: nil)
     }
     

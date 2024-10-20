@@ -11,6 +11,7 @@ import Kingfisher
 final class SingleImageViewController: UIViewController {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet weak var backwardButton: UIButton!
     var fullImageURLString: String?
     var image: UIImage? {
         didSet {
@@ -22,6 +23,7 @@ final class SingleImageViewController: UIViewController {
             imageView.image = image
             imageView.frame.size = image.size
             rescaleAndCenterImageInScrollView(image: image)
+            imageView.accessibilityIdentifier = "full_image"
         }
     }
         
@@ -30,6 +32,7 @@ final class SingleImageViewController: UIViewController {
        
           loadImage()
           setScales()
+        backwardButton.accessibilityIdentifier = "nav_back_button"
     }
     
     
