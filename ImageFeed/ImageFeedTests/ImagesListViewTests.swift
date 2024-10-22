@@ -19,11 +19,11 @@ final class ImageListViewTests: XCTestCase {
         let presenterSpy = ImagesListPresenterSpy()
         imagesListViewController.presenter = presenterSpy
         presenterSpy.view = imagesListViewController
-
+        
         _ = imagesListViewController.view
         XCTAssertTrue(presenterSpy.fetchNextPhotosCalled)
     }
-
+    
     func testControllerFetchNetPhotosOnCountOfImages() {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         guard let imagesListViewController = storyboard.instantiateViewController(withIdentifier: "ImagesListViewController") as? ImagesListViewController
@@ -33,11 +33,11 @@ final class ImageListViewTests: XCTestCase {
         let presenterSpy = ImagesListPresenterSpy()
         imagesListViewController.presenter = presenterSpy
         presenterSpy.view = imagesListViewController
-
+        
         let indexPath1 = IndexPath(row: 8, section: 0)
         imagesListViewController.tableView(UITableView(), willDisplay: UITableViewCell(), forRowAt: indexPath1)
         XCTAssertFalse(presenterSpy.fetchNextPhotosCalled)
-
+        
         let indexPath2 = IndexPath(row: 9, section: 0)
         imagesListViewController.tableView(UITableView(), willDisplay: UITableViewCell(), forRowAt: indexPath2)
         XCTAssertTrue(presenterSpy.fetchNextPhotosCalled)

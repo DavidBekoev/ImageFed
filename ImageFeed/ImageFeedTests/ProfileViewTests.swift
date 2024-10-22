@@ -14,17 +14,17 @@ final class ProfileViewTests: XCTestCase {
         let profilePresenterSpy = ProfilePresenterSpy()
         profilePresenterSpy.view = profileViewController
         profileViewController.presenter = profilePresenterSpy
-
+        
         _ = profileViewController.view
         XCTAssertTrue(profilePresenterSpy.updateAvatarCalled)
     }
-
+    
     func testProfileInfoIsSet() {
         let profileViewController = ProfileViewController()
         let profilePresenterSpy = ProfilePresenterSpy()
         profilePresenterSpy.view = profileViewController
         profileViewController.presenter = profilePresenterSpy
-
+        
         _ = profileViewController.view
         XCTAssertEqual(profileViewController.nameLabel.text, "TestName")
         XCTAssertEqual(profileViewController.loginNameLabel.text, "TestLogin")

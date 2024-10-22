@@ -68,8 +68,8 @@ final class ProfileImageService{
     }
     
     func cleanAvatar() {
-           avatarURL = nil
-       }
+        avatarURL = nil
+    }
 }
 
 

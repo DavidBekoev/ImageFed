@@ -127,18 +127,18 @@ extension SplashViewController: AuthViewControllerDelegate {
             case .failure(let error):
                 debugPrint("[SplashViewController fetchProfile] Profile loading failed\n \(error)")
                 let alert = UIAlertController(title: "Что-то пошло не так",
-                                                             message: "Попробовать ещё раз?",
-                                                             preferredStyle: .alert)
-                               let action = UIAlertAction(title: "Не надо", style: .default) { _ in
-                                   alert.dismiss(animated: true)
-                               }
-                               let reload = UIAlertAction(title: "Повторить", style: .default) { [weak self] _ in
-                                   guard let self = self else { return }
-                                   self.fetchProfile(token)
-                               }
-                               alert.addAction(action)
-                               alert.addAction(reload)
-                               self.present(alert, animated: true, completion: nil)
+                                              message: "Попробовать ещё раз?",
+                                              preferredStyle: .alert)
+                let action = UIAlertAction(title: "Не надо", style: .default) { _ in
+                    alert.dismiss(animated: true)
+                }
+                let reload = UIAlertAction(title: "Повторить", style: .default) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.fetchProfile(token)
+                }
+                alert.addAction(action)
+                alert.addAction(reload)
+                self.present(alert, animated: true, completion: nil)
             }
         }
         UIBlockingProgressHUD.dismiss()

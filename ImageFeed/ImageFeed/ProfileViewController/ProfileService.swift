@@ -73,8 +73,8 @@ final class ProfileService {
             bio: profileResult.bio)
     }
     func cleanProfile() {
-           profile = nil
-       }
+        profile = nil
+    }
 }
 
 

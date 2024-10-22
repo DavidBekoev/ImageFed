@@ -21,22 +21,13 @@ final class ProfileViewController: UIViewController {
     private let oAuth2Storage = OAuth2TokenStorage.shared
     private let avatarImage: UIImageView = UIImageView()
     private let logoutButton: UIButton = UIButton()
-//     let nameLabel: UILabel = configLabel(text: "Екатерина Новикова",
-//                                                 font: UIFont.systemFont(ofSize: 23, weight: .semibold),
-//                                                 color: UIColor.white)
-//     let loginNameLabel: UILabel = configLabel(text: "@ekaterina_nov",
-//                                                      font: UIFont.systemFont(ofSize: 13),
-//                                                      color: UIColor.gray)
-//     let descriptionLabel: UILabel = configLabel(text: "Hello, World!",
-//                                                        font: UIFont.systemFont(ofSize: 13),
-//                                                        color: UIColor.white)
     
     let nameLabel: UILabel = configLabel(font: UIFont.systemFont(ofSize: 23, weight: .semibold),
-                                            color: .white)
-       let loginNameLabel: UILabel = configLabel(font: UIFont.systemFont(ofSize: 13),
-                                                 color: .gray)
-       let descriptionLabel: UILabel = configLabel(font: UIFont.systemFont(ofSize: 13),
-                                                   color: .white)
+                                         color: .white)
+    let loginNameLabel: UILabel = configLabel(font: UIFont.systemFont(ofSize: 13),
+                                              color: .gray)
+    let descriptionLabel: UILabel = configLabel(font: UIFont.systemFont(ofSize: 13),
+                                                color: .white)
     
     private var profileImageServiceObserver: NSObjectProtocol?
     private var profileServiceObserver: NSObjectProtocol?
@@ -103,7 +94,6 @@ final class ProfileViewController: UIViewController {
     private static func configLabel(font: UIFont, color: UIColor) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-  //      label.text = text
         label.font = font
         label.textColor = color
         return label
@@ -123,6 +113,7 @@ final class ProfileViewController: UIViewController {
                                       preferredStyle: .alert)
         let yes = UIAlertAction(title: "Да", style: .default) { [weak self] _ in          guard let self = self else { return }
             self.presenter?.logout()
+           
             guard let window = UIApplication.shared.windows.first else {
                 assertionFailure("Invalid window configuration")
                 return

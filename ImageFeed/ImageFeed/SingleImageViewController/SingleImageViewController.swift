@@ -26,12 +26,12 @@ final class SingleImageViewController: UIViewController {
             imageView.accessibilityIdentifier = "full_image"
         }
     }
-        
-        override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
-       
-          loadImage()
-          setScales()
+        
+        loadImage()
+        setScales()
         backwardButton.accessibilityIdentifier = "nav_back_button"
     }
     
@@ -41,7 +41,7 @@ final class SingleImageViewController: UIViewController {
     }
     
     @IBAction func didTapShareButton(_ sender: UIButton) {
-       guard  let image else { return }
+        guard  let image else { return }
         let share = UIActivityViewController(
             activityItems: [image],
             applicationActivities: nil
@@ -67,46 +67,46 @@ final class SingleImageViewController: UIViewController {
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
     }
     private func setScales() {
-          scrollView.minimumZoomScale = 0.1
-          scrollView.maximumZoomScale = 1.25
-      }
-
-      private func loadImage() {
-          UIBlockingProgressHUD.show()
-          guard let fullImageURLString = fullImageURLString,
-                let fullImageURL = URL(string: fullImageURLString)
-          else {
-              debugPrint("[SingleImageViewController viewDidLoad] image is nil")
-              return
-          }
-          imageView.kf.setImage(with: fullImageURL) { [weak self] result in
-              UIBlockingProgressHUD.dismiss()
-              guard let self = self else { return }
-              switch result {
-              case .success(let imageResult):
-                  self.image = imageResult.image
-              case .failure:
-                  UIBlockingProgressHUD.dismiss()
-                  self.showError()
-              }
-          }
-      }
-
-      private func showError() {
-          let alert = UIAlertController(title: "Что-то пошло не так",
-                                        message: "Попробовать ещё раз?",
-                                        preferredStyle: .alert)
-          let action = UIAlertAction(title: "Не надо", style: .default) { _ in
-              alert.dismiss(animated: true)
-          }
-          let reload = UIAlertAction(title: "Повторить", style: .default) { [weak self] _ in
-              guard let self = self else { return }
-              self.loadImage()
-          }
-          alert.addAction(action)
-          alert.addAction(reload)
-          self.present(alert, animated: true, completion: nil)
-      }
+        scrollView.minimumZoomScale = 0.1
+        scrollView.maximumZoomScale = 1.25
+    }
+    
+    private func loadImage() {
+        UIBlockingProgressHUD.show()
+        guard let fullImageURLString = fullImageURLString,
+              let fullImageURL = URL(string: fullImageURLString)
+        else {
+            debugPrint("[SingleImageViewController viewDidLoad] image is nil")
+            return
+        }
+        imageView.kf.setImage(with: fullImageURL) { [weak self] result in
+            UIBlockingProgressHUD.dismiss()
+            guard let self = self else { return }
+            switch result {
+            case .success(let imageResult):
+                self.image = imageResult.image
+            case .failure:
+                UIBlockingProgressHUD.dismiss()
+                self.showError()
+            }
+        }
+    }
+    
+    private func showError() {
+        let alert = UIAlertController(title: "Что-то пошло не так",
+                                      message: "Попробовать ещё раз?",
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "Не надо", style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+        let reload = UIAlertAction(title: "Повторить", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.loadImage()
+        }
+        alert.addAction(action)
+        alert.addAction(reload)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension SingleImageViewController: UIScrollViewDelegate {

@@ -28,10 +28,10 @@ final class ImagesListService {
             return
         }
         
-        //ограничиваем количество запросов для UI тестов
-               if ProcessInfo().environment["isUITesting"] == "YES" && nextPage > 1 {
-                   return
-               }
+        
+        if ProcessInfo().environment["isUITesting"] == "YES" && nextPage > 1 {
+            return
+        }
         
         guard let request = getPhotosRequest(page: nextPage)
         else {

@@ -48,10 +48,10 @@ class AuthViewController: UIViewController {
         navigationItem.backBarButtonItem?.tintColor = UIColor(named: "YP Black")
     }
     private func configureLoginButton() {
-          loginButton.layer.cornerRadius = 16
-          loginButton.layer.masksToBounds = true
-          loginButton.accessibilityIdentifier = "Authenticate"
-      }
+        loginButton.layer.cornerRadius = 16
+        loginButton.layer.masksToBounds = true
+        loginButton.accessibilityIdentifier = "Authenticate"
+    }
 }
 
 extension AuthViewController: WebViewViewControllerDelegate {
@@ -59,7 +59,7 @@ extension AuthViewController: WebViewViewControllerDelegate {
         navigationController?.popToRootViewController(animated: true)
         ProgressHUD.animate()
         OAuth2Service.shared.fetchOAuthToken(code) { [weak self] result in
-          
+            
             guard let self = self else { return }
             switch result {
             case .success(let token):

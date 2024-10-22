@@ -14,9 +14,9 @@ final class ProfileLogoutService {
     let profileService = ProfileService.shared
     let profileImageService = ProfileImageService.shared
     let imageListService = ImagesListService.shared
-
+    
     private init() { }
-
+    
     func logout() {
         cleanCookies()
         oAuth2Storage.cleanToken()
@@ -24,7 +24,7 @@ final class ProfileLogoutService {
         profileImageService.cleanAvatar()
         imageListService.cleanImages()
     }
-
+    
     private func cleanCookies() {
         HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
         WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in

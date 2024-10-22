@@ -8,7 +8,7 @@
 import XCTest
 
 final class Image_FeedUITests: XCTestCase {
-    private let app = XCUIApplication()// переменная приложения
+    private let app = XCUIApplication()
     enum UserData {
         static let username = ""
         static let password = ""
@@ -16,9 +16,9 @@ final class Image_FeedUITests: XCTestCase {
         static let userName = ""
     }
     override func setUpWithError() throws {
-        continueAfterFailure = false // настройка выполнения тестов, которая прекратит выполнения тестов, если в тесте что-то пошло не так
+        continueAfterFailure = false
         app.launchEnvironment = ["isUITesting": "YES"]
-        app.launch() // запускаем приложение перед каждым тестом
+        app.launch()
     }
     
     func testAuth() throws {
@@ -84,22 +84,27 @@ final class Image_FeedUITests: XCTestCase {
         
         let navBackButtonWhiteButton = app.buttons["nav_back_button"]
         navBackButtonWhiteButton.tap()
-        // тестируем сценарий ленты
+        
     }
     
     func testProfile() throws {
-        // тестируем сценарий профиля
-        func testProfile() throws {
-            sleep(3)
-            app.tabBars.buttons.element(boundBy: 1).tap()
-            
-            
-            XCTAssertTrue(app.staticTexts[UserData.fullName].waitForExistence(timeout: 5))
-            XCTAssertTrue(app.staticTexts[UserData.userName].waitForExistence(timeout: 5))
-            app.buttons["logout button"].tap()
-            
-            app.alerts["Bye bye!"].scrollViews.otherElements.buttons["Yes"].tap()
-        }
+        
+        let profileTab = app.tabBars.buttons.element(boundBy: 1)
+        XCTAssertTrue(profileTab.waitForExistence(timeout: 10))
+        profileTab.tap()
+        
+        XCTAssertTrue(app.staticTexts[UserData.fullName].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts[UserData.userName].waitForExistence(timeout: 5))
+        
+        app.buttons["logoutButton"].tap()
+        
+        let yesButton = app.alerts.buttons["yesAlertButton"]
+        XCTAssertTrue(yesButton.waitForExistence(timeout: 5))
+        yesButton.tap()
+        
+        let loginButton = app.buttons["Authenticate"]
+        XCTAssertTrue(loginButton.waitForExistence(timeout: 10))
     }
+    
 }
 

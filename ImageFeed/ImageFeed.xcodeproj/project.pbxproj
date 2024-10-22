@@ -33,7 +33,7 @@
 		EAA980A62C372BA30095CE78 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EAA980A52C372BA30095CE78 /* Base */; };
 		EAA980A82C372BA40095CE78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAA980A72C372BA40095CE78 /* Assets.xcassets */; };
 		EAA980AB2C372BA40095CE78 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EAA980AA2C372BA40095CE78 /* Base */; };
-		EAA980B62C372BA40095CE78 /* ImageFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA980B52C372BA40095CE78 /* ImageFeedTests.swift */; };
+		EAA980B62C372BA40095CE78 /* WebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA980B52C372BA40095CE78 /* WebViewTests.swift */; };
 		EAA980C02C372BA40095CE78 /* ImageFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA980BF2C372BA40095CE78 /* ImageFeedUITests.swift */; };
 		EAE280BA2CB85EBB00E9A6DC /*  ImagesListCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280B92CB85EB800E9A6DC /*  ImagesListCellDelegate.swift */; };
 		EAE280BC2CB8789E00E9A6DC /* ProfileLogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE280BB2CB8789B00E9A6DC /* ProfileLogoutService.swift */; };
@@ -108,7 +108,7 @@
 		EAA980AA2C372BA40095CE78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAA980AC2C372BA40095CE78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAA980B12C372BA40095CE78 /* ImageFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAA980B52C372BA40095CE78 /* ImageFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedTests.swift; sourceTree = "<group>"; };
+		EAA980B52C372BA40095CE78 /* WebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewTests.swift; sourceTree = "<group>"; };
 		EAA980BB2C372BA40095CE78 /* ImageFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA980BF2C372BA40095CE78 /* ImageFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedUITests.swift; sourceTree = "<group>"; };
 		EAE280B92CB85EB800E9A6DC /*  ImagesListCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ImagesListCellDelegate.swift"; sourceTree = "<group>"; };
@@ -300,7 +300,7 @@
 			children = (
 				EAE280E32CC2881C00E9A6DC /* ImagesListViewTests.swift */,
 				EAE280E12CC2870300E9A6DC /* ProfileViewTests.swift */,
-				EAA980B52C372BA40095CE78 /* ImageFeedTests.swift */,
+				EAA980B52C372BA40095CE78 /* WebViewTests.swift */,
 			);
 			path = ImageFeedTests;
 			sourceTree = "<group>";
@@ -565,7 +565,7 @@
 			files = (
 				EAE280E42CC2883C00E9A6DC /* ImagesListViewTests.swift in Sources */,
 				EAE280E22CC2871000E9A6DC /* ProfileViewTests.swift in Sources */,
-				EAA980B62C372BA40095CE78 /* ImageFeedTests.swift in Sources */,
+				EAA980B62C372BA40095CE78 /* WebViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
